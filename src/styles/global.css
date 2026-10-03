@@ -1,0 +1,207 @@
+
+:root {
+  color-scheme: light;
+  --bg: #f5f2ea;
+  --paper: #fffdf8;
+  --text: #2d2926;
+  --muted: #766f68;
+  --line: #ddd4c8;
+  --accent: #9e3942;
+  --accent-soft: #ead9db;
+  --reader-width: 42rem;
+  --font-scale: 1;
+  --shadow: 0 18px 50px rgb(40 30 20 / .08);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #171615;
+  --paper: #211f1c;
+  --text: #eee8df;
+  --muted: #aaa095;
+  --line: #403a34;
+  --accent: #e1848b;
+  --accent-soft: #472f32;
+  --shadow: none;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  font-family: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
+}
+
+a { color: inherit; }
+
+.site-shell {
+  width: min(100% - 2rem, 72rem);
+  margin: 0 auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 78%, transparent);
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.site-header-inner {
+  min-height: 4rem;
+  display: flex;
+  gap: 1.4rem;
+  align-items: center;
+}
+
+.brand {
+  margin-right: auto;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: .04em;
+}
+
+.site-nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-family: system-ui, sans-serif;
+  font-size: .9rem;
+}
+
+.site-nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-nav a:hover { color: var(--text); }
+
+main.site-main {
+  min-height: calc(100vh - 8rem);
+}
+
+.hero {
+  padding: 7rem 0 5rem;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, 1.25fr) minmax(16rem, .75fr);
+  align-items: center;
+}
+
+.eyebrow {
+  margin: 0 0 .8rem;
+  color: var(--accent);
+  font: 700 .78rem/1.4 system-ui, sans-serif;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.7rem, 7vw, 5.8rem);
+  line-height: 1.02;
+  font-weight: 700;
+}
+
+.hero .subtitle {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  line-height: 1.8;
+}
+
+.cover-placeholder {
+  min-height: 28rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--accent-soft) 60%, transparent), transparent 55%),
+    var(--paper);
+  color: var(--muted);
+  box-shadow: var(--shadow);
+  text-align: center;
+  padding: 2rem;
+}
+
+.section {
+  padding: 2.5rem 0 4rem;
+}
+
+.section h2 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  min-height: 12rem;
+  padding: 1.4rem;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  text-decoration: none;
+  box-shadow: var(--shadow);
+}
+
+.card small {
+  display: block;
+  color: var(--accent);
+  font: 700 .72rem/1.4 system-ui, sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.card h3 { margin: .65rem 0; }
+.card p { color: var(--muted); line-height: 1.75; }
+
+.page-head {
+  padding: 5rem 0 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.page-head h1 {
+  margin: .4rem 0;
+  font-size: clamp(2.3rem, 6vw, 4.4rem);
+}
+
+.page-head p {
+  color: var(--muted);
+  max-width: 44rem;
+  line-height: 1.8;
+}
+
+.placeholder-block {
+  margin: 2rem 0;
+  padding: 2rem;
+  border: 1px dashed var(--line);
+  color: var(--muted);
+  background: var(--paper);
+}
+
+.site-footer {
+  padding: 2rem 0 3rem;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font: .85rem/1.7 system-ui, sans-serif;
+}
+
+@media (max-width: 800px) {
+  .hero { grid-template-columns: 1fr; padding-top: 4rem; }
+  .cover-placeholder { min-height: 18rem; }
+  .card-grid { grid-template-columns: 1fr; }
+  .site-header-inner { align-items: flex-start; padding: .9rem 0; flex-direction: column; }
+  .brand { margin-right: 0; }
+}
