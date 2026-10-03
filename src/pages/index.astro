@@ -49,18 +49,20 @@ const days = [
         <div><p class="section-kicker">Seven Days</p><h2 class="section-title" id="days-title">七日闲暇</h2></div>
         <p class="section-note">这里只留下气氛，不提前告诉你答案。</p>
       </div>
-      <figure class="seven-days-poster">
-        <img src={base + "media/promotion/p02-seven-days.png"} alt="七日闲暇宣传视觉：同一条路从白昼延伸至夜晚与清晨。" loading="lazy" />
-        <figcaption>Seven Days · accepted clean art</figcaption>
-      </figure>
-      <ol class="day-flow">
-        {days.map(([day, title, note], index) => (
-          <li class="day-entry">
-            <div class="day-index"><span>{String(index + 1).padStart(2, "0")}</span>{day}</div>
-            <div class="day-copy"><h3>{title}</h3><p>{note}</p></div>
-          </li>
-        ))}
-      </ol>
+      <div class="seven-days-spread">
+        <figure class="seven-days-portrait">
+          <img src={base + "media/promotion/kv-02-portrait-preview.png"} alt="《東方七日祭》竖版主视觉：博丽神社前的七日闲暇。" loading="lazy" />
+          <figcaption>Portrait key visual · promotion preview</figcaption>
+        </figure>
+        <ol class="day-flow">
+          {days.map(([day, title, note], index) => (
+            <li class="day-entry">
+              <div class="day-index"><span>{String(index + 1).padStart(2, "0")}</span>{day}</div>
+              <div class="day-copy"><h3>{title}</h3><p>{note}</p></div>
+            </li>
+          ))}
+        </ol>
+      </div>
     </section>
 
     <section class="home-feature home-feature-game" aria-labelledby="game-title">
