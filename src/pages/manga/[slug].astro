@@ -1,0 +1,48 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import MangaReader from "../../components/manga/MangaReader.astro";
+import { mangaChapters } from "../../data/manga/chapters";
+import "../../styles/manga.css";
+
+export function getStaticPaths() {
+  return mangaChapters.map((chapter) => ({
+    params: { slug: chapter.id },
+    props: { chapter },
+  }));
+}
+
+const { chapter } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<SiteLayout title={`${chapter.dayLabel}　${chapter.title}`}>
+  <div class="manga-reader-bar">
+    <div class="site-shell manga-reader-bar-inner">
+      <a href={`${base}manga/`}>← 漫画目录</a>
+      <span>LTR · 左 → 右</span>
+      <span>B&amp;W</span>
+    </div>
+  </div>
+
+  <div class="site-shell">
+    <header class="manga-chapter-head">
+      <div class="manga-chapter-folio">
+        <span>CHAPTER</span>
+        <strong>{String(chapter.order).padStart(2, "0")}</strong>
+      </div>
+      <div>
+        <p class="section-kicker">{chapter.dayLabel} · {chapter.publicationStatus}</p>
+        <h1>{chapter.title}</h1>
+        <p class="manga-subtitle">{chapter.subtitle}</p>
+      </div>
+    </header>
+
+    <MangaReader chapter={chapter} />
+
+    <nav class="chapter-nav manga-bottom-nav" aria-label="漫画章节导航">
+      <span>← 上一话</span>
+      <a href={`${base}manga/`}>目录</a>
+      <span>下一话 →</span>
+    </nav>
+  </div>
+</SiteLayout>
