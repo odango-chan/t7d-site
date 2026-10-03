@@ -69,3 +69,28 @@ Only Web-ready accepted assets belong in this repository.
 Working-source files and production masters remain upstream.
 
 If public media eventually makes this repository too large, move heavy delivery assets to object storage / CDN instead of turning this repository into an archive.
+## Provenance validation direction
+
+The public site validates only facts it owns locally:
+
+- public release files exist;
+- provenance metadata is structurally valid;
+- chapter ordering is valid;
+- production comments / QA metadata do not leak.
+
+For upstream-owned prose, **freshness is validated from the production repository toward this public repository**.
+
+Do not give `t7d-site` credentials merely so its CI can read private production sources.
+
+```text
+touhou-seven-days
+  ├─ owns current Release Draft
+  ├─ computes current Git blob SHA
+  ├─ checks t7d-site release copy
+  ↓
+t7d-site
+  ├─ owns public presentation
+  └─ validates its own public boundary
+```
+
+This keeps the dependency one-way and prevents the public presentation repository from becoming coupled to production-repository permissions.
