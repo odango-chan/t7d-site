@@ -18,9 +18,8 @@ const days = [
     <section class="home-hero" aria-labelledby="home-title">
       <div class="home-hero-copy">
         <p class="folio">T7D · SEVEN DAYS OF LEISURE</p>
-        <p class="home-eyebrow">人间忽有七日闲。</p>
-        <h1 id="home-title" class="home-title">東方七日祭</h1>
-        <p class="home-title-en">Seven Days of Leisure</p>
+        <h1 id="home-title" class="sr-only">東方七日祭 ～ Seven Days of Leisure</h1>
+        <img class="home-title-lockup" src={base + "media/promotion/title-lockup-preview.png"} alt="東方七日祭 ～ Seven Days of Leisure　人间忽有七日闲。" />
         <p class="home-premise">幻想乡忽然多出了七日闲暇。没有人等着谁来宣布，大家已经各自过起假来。</p>
         <div class="home-actions">
           <a class="text-action" href="#seven-days">看看这七天 <span aria-hidden="true">↓</span></a>
@@ -28,14 +27,12 @@ const days = [
         </div>
       </div>
 
-      <figure class="home-kv-placeholder" aria-label="正式横版主视觉预留区域">
-        <div class="kv-threshold" aria-hidden="true">
-          <span class="kv-shrine">神社</span>
-          <span class="kv-torii">鳥居</span>
-          <span class="kv-reimu">灵梦</span>
-          <span class="kv-road">幻想乡 · 大家都出门了</span>
-        </div>
-        <figcaption>KV-01 · Shrine Threshold · final artwork pending</figcaption>
+      <figure class="home-kv" aria-label="《東方七日祭》主视觉预览">
+        <picture>
+          <source media="(max-width: 640px)" srcset={base + "media/promotion/kv-02-portrait-preview.png"} />
+          <img src={base + "media/promotion/kv-01-landscape-preview.png"} alt="博丽神社前，灵梦望向忽然热闹起来的幻想乡。" />
+        </picture>
+        <figcaption>Promotion preview · character canon correction pending</figcaption>
       </figure>
     </section>
 
@@ -52,6 +49,10 @@ const days = [
         <div><p class="section-kicker">Seven Days</p><h2 class="section-title" id="days-title">七日闲暇</h2></div>
         <p class="section-note">这里只留下气氛，不提前告诉你答案。</p>
       </div>
+      <figure class="seven-days-poster">
+        <img src={base + "media/promotion/p02-seven-days.png"} alt="七日闲暇宣传视觉：同一条路从白昼延伸至夜晚与清晨。" loading="lazy" />
+        <figcaption>Seven Days · accepted clean art</figcaption>
+      </figure>
       <ol class="day-flow">
         {days.map(([day, title, note], index) => (
           <li class="day-entry">
