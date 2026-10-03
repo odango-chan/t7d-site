@@ -1,0 +1,58 @@
+
+---
+import { getCollection, render } from "astro:content";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import "../../styles/reader.css";
+
+export async function getStaticPaths() {
+  const chapters = await getCollection("novel");
+  return chapters.map((chapter) => ({
+    params: { slug: chapter.data.slug },
+    props: { chapter },
+  }));
+}
+
+const { chapter } = Astro.props;
+const { Content } = await render(chapter);
+const base = import.meta.env.BASE_URL;
+---
+
+<SiteLayout title={chapter.data.title}>
+  <div class="reader-toolbar" aria-label="阅读设置">
+    <a href={`${base}novel/`}>← 目录</a>
+    <span class="spacer"></span>
+    <button type="button" data-reader-font-down aria-label="减小字号">A−</button>
+    <button type="button" data-reader-font-up aria-label="增大字号">A+</button>
+    <button type="button" data-reader-width aria-label="切换版心">↔</button>
+    <button type="button" data-reader-theme aria-label="切换明暗">◐</button>
+  </div>
+
+  <article class="reader">
+    <p class="reader-kicker">Novel · Release Candidate</p>
+    <h1 class="reader-title">{chapter.data.title}</h1>
+
+    <figure class="illustration-slot" data-slot={chapter.data.openerSlot}>
+      {chapter.data.openerSlot} · 章节题图待生成
+    </figure>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    {chapter.data.slug === "day-01" && (
+      <template id="day1-inline-slot">
+        <figure class="illustration-slot full" data-slot="NVI-ILL-01">
+          NVI-ILL-01 ·「地上堵，天上也堵」插图待生成
+        </figure>
+      </template>
+    )}
+
+    <nav class="chapter-nav" aria-label="章节导航">
+      <span>← 上一章</span>
+      <a href={`${base}novel/`}>目录</a>
+      <span>下一章 →</span>
+    </nav>
+  </article>
+
+  <script src={`${base}reader.js`}></script>
+</SiteLayout>
