@@ -1,4 +1,3 @@
-
 ---
 import { getCollection } from "astro:content";
 import SiteLayout from "../../layouts/SiteLayout.astro";
@@ -10,18 +9,21 @@ const chapters = (await getCollection("novel")).sort((a, b) => (a.data.order ?? 
 <SiteLayout title="小说">
   <div class="site-shell">
     <header class="page-head">
-      <p class="eyebrow">Novel</p>
+      <p class="section-kicker">Novel · Release Edition</p>
       <h1>小说</h1>
-      <p>《東方七日祭》小说公开阅读版。当前先迁移第一日验证正式站点结构。</p>
+      <p>
+        《東方七日祭》的连续阅读版。正文以主仓的 Release Draft 为生产真源，
+        这里只保留已经批准公开的发布副本。
+      </p>
     </header>
 
     <section class="section">
-      <div class="card-grid">
+      <div class="chapter-list">
         {chapters.map((chapter) => (
-          <a class="card" href={`${base}novel/${chapter.data.slug}/`}>
-            <small>{chapter.data.releaseStatus}</small>
-            <h3>{chapter.data.title}</h3>
-            <p>阅读章节 →</p>
+          <a class="chapter-entry" href={`${base}novel/${chapter.data.slug}/`}>
+            <span class="chapter-order">{String(chapter.data.order ?? 0).padStart(2, "0")}</span>
+            <h2 class="chapter-title">{chapter.data.title}</h2>
+            <span class="chapter-meta">Read</span>
           </a>
         ))}
       </div>
