@@ -15,6 +15,17 @@ const no = String(character.order).padStart(2, "0");
     <div>
       <h2>{character.name}</h2>
       <p>{character.romanized}</p>
+
+      <dl class="character-quick">
+        <div>
+          <dt>种族</dt>
+          <dd>{character.species}</dd>
+        </div>
+        <div>
+          <dt>性格</dt>
+          <dd>{character.traits}</dd>
+        </div>
+      </dl>
     </div>
   </header>
 
@@ -27,16 +38,8 @@ const no = String(character.order).padStart(2, "0");
   <div class="character-copy">
     <dl>
       <div>
-        <dt>种族</dt>
-        <dd>{character.species}</dd>
-      </div>
-      <div>
         <dt>身份</dt>
         <dd>{character.identity}</dd>
-      </div>
-      <div>
-        <dt>性格</dt>
-        <dd>{character.traits}</dd>
       </div>
     </dl>
 
