@@ -1,4 +1,3 @@
-
 ---
 import { getCollection, render } from "astro:content";
 import SiteLayout from "../../layouts/SiteLayout.astro";
@@ -23,16 +22,18 @@ const base = import.meta.env.BASE_URL;
     <span class="spacer"></span>
     <button type="button" data-reader-font-down aria-label="减小字号">A−</button>
     <button type="button" data-reader-font-up aria-label="增大字号">A+</button>
-    <button type="button" data-reader-width aria-label="切换版心">↔</button>
-    <button type="button" data-reader-theme aria-label="切换明暗">◐</button>
+    <button type="button" data-reader-width aria-label="切换版心">宽</button>
+    <button type="button" data-reader-theme aria-label="切换明暗">明暗</button>
   </div>
 
   <article class="reader">
-    <p class="reader-kicker">Novel · Release Candidate</p>
-    <h1 class="reader-title">{chapter.data.title}</h1>
+    <header class="reader-head">
+      <p class="reader-kicker">Novel · Release Candidate</p>
+      <h1 class="reader-title">{chapter.data.title}</h1>
+    </header>
 
     <figure class="illustration-slot" data-slot={chapter.data.openerSlot}>
-      {chapter.data.openerSlot} · 章节题图待生成
+      {chapter.data.openerSlot} · CHAPTER FRONTISPIECE
     </figure>
 
     <div class="prose">
@@ -42,7 +43,7 @@ const base = import.meta.env.BASE_URL;
     {chapter.data.slug === "day-01" && (
       <template id="day1-inline-slot">
         <figure class="illustration-slot full" data-slot="NVI-ILL-01">
-          NVI-ILL-01 ·「地上堵，天上也堵」插图待生成
+          NVI-ILL-01 · 地上堵，天上也堵
         </figure>
       </template>
     )}
