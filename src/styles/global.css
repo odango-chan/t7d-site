@@ -811,28 +811,45 @@ main.site-main {
   backdrop-filter: blur(5px);
 }
 
-/* Home KV experiment — a restrained dark display field around the promotion art. */
+/* Home KV experiment — let the promotion art sit on an open dark display field. */
 .home-kv {
-  padding: clamp(.55rem, 1.2vw, .85rem);
-  padding-bottom: clamp(1.85rem, 3vw, 2.15rem);
-  border: 1px solid #4b3b32;
-  background: #241c19;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  isolation: isolate;
+}
+
+.home-kv::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -.75rem -1rem -2.45rem;
+  background: linear-gradient(145deg, #241c19 0%, #2b211d 100%);
 }
 
 .home-kv picture {
   position: relative;
   z-index: 1;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, #b18a4a 34%, #241c19);
 }
 
 .home-kv figcaption {
-  left: .7rem;
-  bottom: .45rem;
-  padding: .22rem .3rem;
+  left: 0;
+  bottom: -1.75rem;
+  padding: 0;
   background: transparent;
   color: #d8c6a8;
   backdrop-filter: none;
+}
+
+@media (max-width: 640px) {
+  .home-kv::before {
+    inset: -.45rem -.45rem -2.15rem;
+  }
+
+  .home-kv figcaption {
+    bottom: -1.55rem;
+  }
 }
 
 .seven-days-poster {
