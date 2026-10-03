@@ -33,6 +33,7 @@ Public website for **東方七日祭 ～ Seven Days of Leisure**.
 - `/manga/` — 漫画阅读 / 发布
 - `/characters/` — 公开人物介绍
 - `/game/` — 游戏介绍 / Releases / 商店入口
+- `/press/` — 已批准公开的媒体 / 宣传素材下载
 - `/news/` — 后续公开更新
 - `/about/` — 项目与二创声明
 
