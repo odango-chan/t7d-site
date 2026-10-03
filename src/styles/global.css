@@ -36,6 +36,7 @@ html {
 }
 
 body {
+  position: relative;
   margin: 0;
   min-width: 320px;
   color: var(--ink);
@@ -44,6 +45,25 @@ body {
     var(--paper);
   font-family: var(--serif);
   text-rendering: optimizeLegibility;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .32;
+  background-image:
+    radial-gradient(circle at 20% 30%, color-mix(in srgb, var(--ink) 8%, transparent) 0 .45px, transparent .6px),
+    radial-gradient(circle at 70% 65%, color-mix(in srgb, var(--vermilion) 7%, transparent) 0 .35px, transparent .55px);
+  background-size: 11px 11px, 17px 17px;
+  mix-blend-mode: multiply;
+}
+
+:root[data-theme="dark"] body::before {
+  opacity: .18;
+  mix-blend-mode: screen;
 }
 
 a { color: inherit; }
@@ -485,5 +505,151 @@ main.site-main {
 
   .chapter-meta {
     grid-column: 2;
+  }
+}
+
+
+/* Editorial depth: decorative marks stay typographic, not illustrative. */
+.edition-mark {
+  display: grid;
+  gap: .15rem;
+  align-self: flex-end;
+  width: fit-content;
+  padding: .55rem .5rem .5rem;
+  border: 1px solid var(--vermilion);
+  color: var(--vermilion);
+  font-family: var(--sans);
+  font-size: .58rem;
+  line-height: 1.1;
+  letter-spacing: .08em;
+  text-align: center;
+}
+
+.edition-mark span:last-child {
+  font-family: var(--serif);
+  font-size: .78rem;
+  letter-spacing: .12em;
+}
+
+.hero-plate::before {
+  content: "01 — 07 / HOLIDAY NOTES";
+  position: absolute;
+  top: 1rem;
+  left: 1.35rem;
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: .58rem;
+  letter-spacing: .14em;
+}
+
+.hero-plate::after {
+  content: "";
+  position: absolute;
+  left: 1.35rem;
+  right: 1.35rem;
+  top: 3.05rem;
+  height: 1px;
+  background:
+    linear-gradient(90deg,
+      var(--vermilion) 0 6%,
+      var(--hairline) 6% 100%);
+}
+
+.route-ornament {
+  position: relative;
+  height: 3.4rem;
+  margin: 0;
+}
+
+.route-ornament::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background:
+    linear-gradient(90deg,
+      var(--hairline) 0 8%,
+      transparent 8% 11%,
+      var(--hairline) 11% 35%,
+      transparent 35% 39%,
+      var(--hairline) 39% 72%,
+      transparent 72% 76%,
+      var(--hairline) 76% 100%);
+}
+
+.route-ornament::after {
+  content: "●";
+  position: absolute;
+  left: 35%;
+  top: calc(50% - .58rem);
+  color: var(--vermilion);
+  font-family: var(--sans);
+  font-size: .68rem;
+  background: var(--paper);
+  padding: 0 .5rem;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--hairline), transparent);
+}
+
+.work-entry {
+  position: relative;
+}
+
+.work-entry::before {
+  content: "";
+  position: absolute;
+  left: -1rem;
+  top: 1.15rem;
+  bottom: 1.15rem;
+  width: 2px;
+  background: transparent;
+  transition: background .16s ease;
+}
+
+.work-entry:hover::before {
+  background: var(--vermilion);
+}
+
+.work-no {
+  position: relative;
+}
+
+.work-no::after {
+  content: "";
+  display: block;
+  width: 1.4rem;
+  height: 1px;
+  margin-top: .5rem;
+  background: var(--hairline);
+}
+
+@media (max-width: 640px) {
+  .edition-mark {
+    padding: .45rem .4rem;
+  }
+
+  .hero-plate::before {
+    font-size: .52rem;
+  }
+
+  .route-ornament {
+    height: 2.4rem;
+  }
+
+  .work-entry::before {
+    left: -.45rem;
   }
 }
