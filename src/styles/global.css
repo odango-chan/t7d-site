@@ -738,8 +738,8 @@ main.site-main {
 
 @media (max-width: 860px) {
   .home-hero { grid-template-columns: 1fr; min-height: auto; }
-  .home-kv-placeholder { grid-row: 1; min-height: 20rem; }
-  .home-hero-copy { grid-row: 2; max-width: 38rem; }
+  .home-hero-copy { grid-row: 1; max-width: 38rem; }
+  .home-kv-placeholder { grid-row: 2; min-height: 20rem; }
   .home-intro-grid, .home-feature { grid-template-columns: 1fr; gap: 1.8rem; }
 }
 
@@ -901,7 +901,8 @@ main.site-main {
 }
 
 @media (max-width: 860px) {
-  .home-kv { grid-row: 1; }
+  .home-hero-copy { grid-row: 1; }
+  .home-kv { grid-row: 2; }
   .home-title-lockup { width: min(100%, 34rem); }
 }
 
