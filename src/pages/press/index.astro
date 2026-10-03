@@ -1,0 +1,104 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import {
+  pressAssets,
+  pressAssetSections,
+} from "../../data/releases/press-assets";
+import "../../styles/press.css";
+
+const base = import.meta.env.BASE_URL;
+
+const sections = pressAssetSections
+  .map((section) => ({
+    ...section,
+    assets: pressAssets.filter((asset) => asset.category === section.id),
+  }))
+  .filter((section) => section.assets.length > 0);
+---
+
+<SiteLayout
+  title="Press & Media"
+  description="《東方七日祭》允许公开使用的 Logo、Key Visual、Poster 与媒体宣传素材。"
+>
+  <div class="site-shell">
+    <header class="page-head press-head">
+      <p class="section-kicker">Press &amp; Media</p>
+      <h1>媒体素材</h1>
+      <p>
+        这里只提供已经通过上游评审、允许公开转载的宣传导出物。
+        角色设定图、制作资料、Prompt、内部 QA 与开发中素材不属于媒体包。
+      </p>
+    </header>
+
+    <section class="press-rules" aria-labelledby="press-rules-title">
+      <div>
+        <p class="section-kicker">Usage</p>
+        <h2 id="press-rules-title">使用说明</h2>
+      </div>
+      <div class="press-rule-copy">
+        <p>
+          可用于作品介绍、报道、活动信息页与非误导性的作品链接展示。
+          请保持 Logo 比例、文字与配色，不把开发中预览图当作正式宣传资产。
+        </p>
+        <p>
+          《東方七日祭》为 Touhou Project / 东方Project 的非官方二次创作，
+          与上海爱丽丝幻乐团 / Team Shanghai Alice 无隶属关系。
+        </p>
+      </div>
+    </section>
+
+    {sections.length > 0 ? (
+      <div class="press-sections">
+        {sections.map((section) => (
+          <section class="press-section" aria-labelledby={"press-" + section.id}>
+            <div class="press-section-head">
+              <p class="section-kicker">{section.id}</p>
+              <h2 id={"press-" + section.id}>{section.label}</h2>
+            </div>
+
+            <div class="press-assets">
+              {section.assets.map((asset) => (
+                <article class="press-asset">
+                  {asset.previewHref && (
+                    <figure class="press-preview">
+                      <img
+                        src={base + asset.previewHref.replace(/^\//, "")}
+                        alt=""
+                        loading="lazy"
+                      />
+                    </figure>
+                  )}
+
+                  <div class="press-asset-copy">
+                    <h3>{asset.title}</h3>
+                    {asset.description && <p>{asset.description}</p>}
+                    <div class="press-downloads">
+                      {asset.downloads.map((download) => (
+                        <a
+                          href={base + download.href.replace(/^\//, "")}
+                          download
+                        >
+                          {download.label}
+                          <span>{download.format.toUpperCase()}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    ) : (
+      <section class="press-empty" aria-label="当前媒体素材状态">
+        <p class="section-kicker">Public assets</p>
+        <h2>当前没有开放下载的正式宣传素材。</h2>
+        <p>
+          Logo、主视觉与海报会在上游完成正式评审后进入这里。
+          当前网站上的制作预览不会自动成为媒体下载素材。
+        </p>
+      </section>
+    )}
+  </div>
+</SiteLayout>
