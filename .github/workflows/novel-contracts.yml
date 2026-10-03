@@ -24,13 +24,6 @@ jobs:
       - name: Checkout public site
         uses: actions/checkout@v5
 
-      - name: Checkout upstream production source
-        uses: actions/checkout@v5
-        with:
-          repository: odango-chan/touhou-seven-days
-          path: .upstream
-          fetch-depth: 1
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -38,4 +31,4 @@ jobs:
       - run: python -m pip install --disable-pip-version-check pyyaml
 
       - name: Validate release provenance and public prose
-        run: python tools/checks/validate-novel-release.py --upstream-root .upstream
+        run: python tools/checks/validate-novel-release.py --fetch-upstream --upstream-ref main
