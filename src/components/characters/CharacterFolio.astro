@@ -22,6 +22,10 @@ const no = String(character.order).padStart(2, "0");
           <dd>{character.species}</dd>
         </div>
         <div>
+          <dt>身份</dt>
+          <dd>{character.identity}</dd>
+        </div>
+        <div>
           <dt>性格</dt>
           <dd>{character.traits}</dd>
         </div>
@@ -35,14 +39,8 @@ const no = String(character.order).padStart(2, "0");
     <figcaption>母版 1600 × 2000 · 人物肖像待整组公开</figcaption>
   </figure>
 
-  <div class="character-copy">
-    <dl>
-      <div>
-        <dt>身份</dt>
-        <dd>{character.identity}</dd>
-      </div>
-    </dl>
-
+  <div class="character-voice">
+    <span class="voice-label">VOICE</span>
     <blockquote>“{character.quote}”</blockquote>
   </div>
 </article>
