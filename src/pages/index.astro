@@ -1,65 +1,100 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 const base = import.meta.env.BASE_URL;
+
+const days = [
+  ["一日目", "大家都出门了。", "路忽然比平时热闹，连灵梦想找条清静的路都不容易。"],
+  ["二日目", "闲下来的人，总会想找点事做。", "幻想乡开始适应这份来得莫名其妙的空闲。"],
+  ["三日目", "临时的热闹有了形状。", "有人摆东西，有人帮忙，也有人只是来看一眼。"],
+  ["四日目", "日子慢下来，问题却没有消失。", "七日闲暇渐渐从新鲜事变成所有人的日常。"],
+  ["五日目", "大家已经习惯今天不用赶路。", "越自然的生活，越容易让人忘记最初为什么停下来。"],
+  ["六日目", "有些事情，到了安静的时候才听得见。", "故事开始收拢，但这里不替你揭开答案。"],
+  ["七日目", "假日总会走到最后一天。", "人群散去以后，路还是路，神社也只是重新安静下来。"],
+];
 ---
 
-<SiteLayout>
+<SiteLayout description="《東方七日祭 ～ Seven Days of Leisure》：幻想乡忽然多出了七日闲暇。游戏、人物、漫画与小说的公开作品站。">
   <div class="site-shell">
-    <section class="hero-editorial">
-      <div class="hero-copy">
-        <p class="folio">T7D · PUBLIC EDITION · 01</p>
-        <p class="epigraph">人间忽有七日闲。</p>
-        <p class="hero-lead">
-          幻想乡忽然有了七天闲日。大家出门、绕路、排队、收拾、问来问去，
-          最后又各自回到原来的生活里。
-        </p>
+    <section class="home-hero" aria-labelledby="home-title">
+      <div class="home-hero-copy">
+        <p class="folio">T7D · SEVEN DAYS OF LEISURE</p>
+        <p class="home-eyebrow">人间忽有七日闲。</p>
+        <h1 id="home-title" class="home-title">東方七日祭</h1>
+        <p class="home-title-en">Seven Days of Leisure</p>
+        <p class="home-premise">幻想乡忽然多出了七日闲暇。没有人等着谁来宣布，大家已经各自过起假来。</p>
+        <div class="home-actions">
+          <a class="text-action" href="#seven-days">看看这七天 <span aria-hidden="true">↓</span></a>
+          <a class="text-action text-action-muted" href={base + "game/"}>游戏开发中 <span aria-hidden="true">→</span></a>
+        </div>
       </div>
 
-      <figure class="hero-plate">
-        <figcaption>
-          NVI-COV-01<br />
-          COVER ART RESERVED
-        </figcaption>
-      </figure>
-
-      <div class="hero-title-block" aria-label="東方七日祭 Seven Days of Leisure">
-        <h1 class="hero-title">東方七日祭</h1>
-        <p class="hero-title-en">Seven Days of Leisure</p>
-        <div class="edition-mark" aria-hidden="true">
-          <span>T7D</span>
-          <span>七日</span>
+      <figure class="home-kv-placeholder" aria-label="正式横版主视觉预留区域">
+        <div class="kv-threshold" aria-hidden="true">
+          <span class="kv-shrine">神社</span>
+          <span class="kv-torii">鳥居</span>
+          <span class="kv-reimu">灵梦</span>
+          <span class="kv-road">幻想乡 · 大家都出门了</span>
         </div>
+        <figcaption>KV-01 · Shrine Threshold · final artwork pending</figcaption>
+      </figure>
+    </section>
+
+    <section class="home-intro" aria-labelledby="intro-title">
+      <p class="section-kicker">Premise</p>
+      <div class="home-intro-grid">
+        <h2 id="intro-title">不是谁宣布的节日。<br />只是大家忽然都有空了。</h2>
+        <p>路上开始拥挤，平常没空做的事被翻出来，临时的热闹一点点长起来。灵梦当然还是会去看看——但这一次，故事先从“大家怎么过这七天”开始。</p>
       </div>
     </section>
 
-    <div class="route-ornament" aria-hidden="true"></div>
+    <section class="seven-days" id="seven-days" aria-labelledby="days-title">
+      <div class="section-heading-row">
+        <div><p class="section-kicker">Seven Days</p><h2 class="section-title" id="days-title">七日闲暇</h2></div>
+        <p class="section-note">这里只留下气氛，不提前告诉你答案。</p>
+      </div>
+      <ol class="day-flow">
+        {days.map(([day, title, note], index) => (
+          <li class="day-entry">
+            <div class="day-index"><span>{String(index + 1).padStart(2, "0")}</span>{day}</div>
+            <div class="day-copy"><h3>{title}</h3><p>{note}</p></div>
+          </li>
+        ))}
+      </ol>
+    </section>
 
-    <section class="work-index" aria-labelledby="works-title">
-      <p class="section-kicker">Works</p>
-      <h2 class="section-title" id="works-title">作品目录</h2>
+    <section class="home-feature home-feature-game" aria-labelledby="game-title">
+      <div><p class="section-kicker">Game</p><h2 id="game-title">从这七天里，飞过去。</h2></div>
+      <div class="feature-copy">
+        <p>《東方七日祭》的游戏版本是一款竖版弹幕射击游戏。角色、地点与故事会与小说和漫画共享同一套世界，但游戏首先得是一场读得懂、躲得开的弹幕体验。</p>
+        <a class="text-action" href={base + "game/"}>查看游戏进展 <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
 
-      <div class="work-list">
-        <a class="work-entry" href={`${base}novel/`}>
-          <span class="work-no">01</span>
-          <h3 class="work-name">小说</h3>
-          <p class="work-desc">先从文字里走完这七天。七日正文与 Extra 现已完整开放。</p>
-          <span class="work-state">Full Text</span>
+    <section class="home-feature" aria-labelledby="characters-title">
+      <div><p class="section-kicker">Characters</p><h2 id="characters-title">先认识路上会遇见的人。</h2></div>
+      <div class="feature-copy">
+        <p>灵梦还是灵梦。熟悉的人也有自己的日常，而新面孔并不是为了填满一张角色表才出现。人物页只公开你现在需要知道的部分。</p>
+        <a class="text-action" href={base + "characters/"}>人物一览 <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section class="read-section" aria-labelledby="read-title">
+      <p class="section-kicker">Read</p>
+      <h2 class="section-title" id="read-title">同一段七日，两种读法</h2>
+      <div class="read-grid">
+        <a class="read-entry" href={base + "novel/"}>
+          <span class="read-no">01</span><div><h3>小说</h3><p>从文字里完整走过七日与 Extra。适合先认识故事，也适合之后回来补那些画面之外的细节。</p></div><span class="read-state">Full Text</span>
         </a>
-
-        <a class="work-entry" href={`${base}manga/`}>
-          <span class="work-no">02</span>
-          <h3 class="work-name">漫画</h3>
-          <p class="work-desc">同一故事的画面版本；正式页面与装画完成后陆续公开。</p>
-          <span class="work-state">Preparing</span>
-        </a>
-
-        <a class="work-entry" href={`${base}game/`}>
-          <span class="work-no">03</span>
-          <h3 class="work-name">游戏</h3>
-          <p class="work-desc">竖版弹幕游戏。未来在这里放试玩、版本、商店与下载入口。</p>
-          <span class="work-state">In Development</span>
+        <a class="read-entry" href={base + "manga/"}>
+          <span class="read-no">02</span><div><h3>漫画</h3><p>同一个故事的画面版本。正式页面与装画完成后按公开进度更新。</p></div><span class="read-state">Preparing</span>
         </a>
       </div>
+    </section>
+
+    <section class="home-release" aria-labelledby="release-title">
+      <p class="section-kicker">Release</p>
+      <h2 id="release-title">游戏还在制作中。</h2>
+      <p>这里以后会放试玩、版本与正式下载入口。在真正有可发布版本以前，不放一个假的“立即下载”。</p>
     </section>
   </div>
 </SiteLayout>
