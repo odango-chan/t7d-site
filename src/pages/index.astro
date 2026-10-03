@@ -1,0 +1,45 @@
+
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<SiteLayout>
+  <div class="site-shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Touhou fan project · public site</p>
+        <h1>東方七日祭</h1>
+        <p class="subtitle">
+          人间忽有七日闲。<br />
+          小说、漫画与弹幕游戏，共用同一段七日故事。
+        </p>
+      </div>
+      <div class="cover-placeholder">
+        NVI-COV-01<br />
+        封面原画待生成
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>作品</h2>
+      <div class="card-grid">
+        <a class="card" href={`${base}novel/`}>
+          <small>Novel</small>
+          <h3>小说</h3>
+          <p>Release Draft Candidate。第一日已迁移到公开阅读版。</p>
+        </a>
+        <a class="card" href={`${base}manga/`}>
+          <small>Manga</small>
+          <h3>漫画</h3>
+          <p>后续接入正式页面与在线阅读。</p>
+        </a>
+        <a class="card" href={`${base}game/`}>
+          <small>Game</small>
+          <h3>游戏</h3>
+          <p>未来承载游戏介绍、PV、截图、商店与 Releases 下载入口。</p>
+        </a>
+      </div>
+    </section>
+  </div>
+</SiteLayout>
