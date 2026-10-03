@@ -811,6 +811,30 @@ main.site-main {
   backdrop-filter: blur(5px);
 }
 
+/* Home KV experiment — a restrained dark display field around the promotion art. */
+.home-kv {
+  padding: clamp(.55rem, 1.2vw, .85rem);
+  padding-bottom: clamp(1.85rem, 3vw, 2.15rem);
+  border: 1px solid #4b3b32;
+  background: #241c19;
+}
+
+.home-kv picture {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, #b18a4a 34%, #241c19);
+}
+
+.home-kv figcaption {
+  left: .7rem;
+  bottom: .45rem;
+  padding: .22rem .3rem;
+  background: transparent;
+  color: #d8c6a8;
+  backdrop-filter: none;
+}
+
 .seven-days-poster {
   position: relative;
   width: min(100%, 34rem);
