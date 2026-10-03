@@ -894,29 +894,12 @@ main.site-main {
   margin-top: 0;
 }
 
-.seven-days-panorama {
-  position: relative;
-  width: min(42%, 28rem);
-  margin: clamp(2.4rem, 5vw, 4rem) auto clamp(3.2rem, 6vw, 5rem);
-}
-
-.seven-days-panorama img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 @media (max-width: 860px) {
   .home-kv { grid-row: 1; }
   .home-title-lockup { width: min(100%, 34rem); }
 }
 
 @media (max-width: 640px) {
-  .seven-days-panorama {
-    width: min(78%, 24rem);
-    margin-block: 2.2rem 3rem;
-  }
-
   .home-hero-copy {
     grid-row: 1;
   }
@@ -941,10 +924,12 @@ main.site-main {
 
   .seven-days-spread {
     grid-template-columns: 1fr;
-    gap: 0;
+    gap: 2rem;
   }
 
   .seven-days-portrait {
-    display: none;
+    display: block;
+    width: min(82%, 22rem);
+    justify-self: center;
   }
 }
