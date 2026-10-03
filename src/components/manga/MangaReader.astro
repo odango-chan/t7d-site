@@ -1,0 +1,69 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import type { PublicMangaChapter } from "../../data/manga/chapters";
+
+interface Props {
+  chapter: PublicMangaChapter;
+}
+
+const { chapter } = Astro.props;
+
+const modules = import.meta.glob<{ default: ImageMetadata }>(
+  "../../assets/manga/**/*.{png,jpg,jpeg,webp,avif}",
+  { eager: true },
+);
+
+function resolveAsset(assetKey: string): ImageMetadata | undefined {
+  const suffix = `/assets/manga/${assetKey}`;
+  const entry = Object.entries(modules).find(([path]) => path.endsWith(suffix));
+  return entry?.[1].default;
+}
+
+const resolvedPages = chapter.pages.map((page) => ({
+  ...page,
+  image: resolveAsset(page.assetKey),
+}));
+---
+
+<section class="manga-reader" aria-label={`${chapter.dayLabel} 漫画阅读器`}>
+  {resolvedPages.length > 0 ? (
+    <div class="manga-pages">
+      {resolvedPages.map((page, index) => (
+        <figure class="manga-page" id={page.id}>
+          {page.image ? (
+            <Image
+              src={page.image}
+              alt={page.alt}
+              widths={[720, 1080, 1440]}
+              sizes="(max-width: 760px) 100vw, 760px"
+              loading={index < 2 ? "eager" : "lazy"}
+            />
+          ) : (
+            <div class="manga-page-missing">
+              <span>{page.id}</span>
+              <p>发布资产缺失</p>
+            </div>
+          )}
+          <figcaption>{String(index + 1).padStart(3, "0")}</figcaption>
+        </figure>
+      ))}
+    </div>
+  ) : (
+    <div class="manga-prepublication">
+      <div class="manga-sheet-preview" aria-hidden="true">
+        <span>PAGE ART</span>
+        <i></i>
+        <strong>LTR</strong>
+      </div>
+      <div class="manga-prepublication-copy">
+        <p class="manga-status">PREPUBLICATION</p>
+        <h2>正式漫画页尚未公开</h2>
+        <p>
+          本章仍在制作中。正式页图通过制作与审查后，会从主仓导出为 Web 发布资产，
+          再按左 → 右的固定阅读方向出现在这里。
+        </p>
+      </div>
+    </div>
+  )}
+</section>
