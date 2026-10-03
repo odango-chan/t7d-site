@@ -3,7 +3,11 @@ import { getCollection } from "astro:content";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 
 const base = import.meta.env.BASE_URL;
-const chapters = (await getCollection("novel")).sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+const entries = await getCollection("novel");
+const chapters = entries
+  .filter((entry) => entry.data.section === "novel")
+  .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+const guide = entries.find((entry) => entry.data.section === "guide");
 ---
 
 <SiteLayout title="小说">
@@ -12,10 +16,20 @@ const chapters = (await getCollection("novel")).sort((a, b) => (a.data.order ?? 
       <p class="section-kicker">Novel · Release Edition</p>
       <h1>小说</h1>
       <p>
-        《東方七日祭》的连续阅读版。正文以主仓的 Release Draft 为生产真源，
-        这里只保留已经批准公开的发布副本。
+        《東方七日祭》的完整连续阅读版。共七日正文与一篇 Extra。
+        本站保存批准公开的 Release Draft 副本，生产真源仍在主仓。
       </p>
     </header>
+
+    {guide && (
+      <section class="section">
+        <a class="chapter-entry" href={`${base}novel/guide/`}>
+          <span class="chapter-order">?</span>
+          <h2 class="chapter-title">第一次来到幻想乡</h2>
+          <span class="chapter-meta">新读者可选</span>
+        </a>
+      </section>
+    )}
 
     <section class="section">
       <div class="chapter-list">

@@ -341,3 +341,37 @@
     margin-bottom: 2.4rem;
   }
 }
+
+
+/* Optional newcomer guide: readable reference prose without novel indentation. */
+.prose-guide p {
+  text-indent: 0;
+}
+
+.prose-guide > p:first-child::before {
+  display: none;
+}
+
+.prose-guide h2 {
+  margin: 3.2rem 0 1.1rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--hairline);
+  font-size: 1.45rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.prose-guide h3 {
+  margin: 2.2rem 0 .8rem;
+  font-size: 1.08rem;
+  font-weight: 600;
+}
+
+.prose-guide ul {
+  margin: 1rem 0 1.8rem;
+  padding-left: 1.4rem;
+}
+
+.prose-guide li {
+  margin: .45rem 0;
+}

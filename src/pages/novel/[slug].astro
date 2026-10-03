@@ -4,16 +4,24 @@ import SiteLayout from "../../layouts/SiteLayout.astro";
 import "../../styles/reader.css";
 
 export async function getStaticPaths() {
-  const chapters = await getCollection("novel");
-  return chapters.map((chapter) => ({
+  const chapters = (await getCollection("novel"))
+    .filter((entry) => entry.data.section === "novel")
+    .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+
+  return chapters.map((chapter, index) => ({
     params: { slug: chapter.data.slug },
-    props: { chapter },
+    props: {
+      chapter,
+      previous: index > 0 ? chapters[index - 1] : null,
+      next: index < chapters.length - 1 ? chapters[index + 1] : null,
+    },
   }));
 }
 
-const { chapter } = Astro.props;
+const { chapter, previous, next } = Astro.props;
 const { Content } = await render(chapter);
 const base = import.meta.env.BASE_URL;
+const illustrationSlots = chapter.data.illustrationSlots ?? [];
 ---
 
 <SiteLayout title={chapter.data.title}>
@@ -38,26 +46,34 @@ const base = import.meta.env.BASE_URL;
 
     <div class="reader-ornament" aria-hidden="true">T7D · TEXT EDITION</div>
 
-    <figure class="illustration-slot" data-slot={chapter.data.openerSlot}>
-      {chapter.data.openerSlot} · CHAPTER FRONTISPIECE
-    </figure>
+    {chapter.data.openerSlot && (
+      <figure class="illustration-slot" data-slot={chapter.data.openerSlot}>
+        {chapter.data.openerSlot} · CHAPTER FRONTISPIECE
+      </figure>
+    )}
 
     <div class="prose">
       <Content />
     </div>
 
-    {chapter.data.slug === "day-01" && (
-      <template id="day1-inline-slot">
-        <figure class="illustration-slot full" data-slot="NVI-ILL-01">
-          NVI-ILL-01 · 地上堵，天上也堵
-        </figure>
+    {illustrationSlots.length > 0 && (
+      <template id="inline-illustration-slots">
+        {illustrationSlots.map((slot) => (
+          <figure class="illustration-slot full" data-slot={slot}>
+            {slot} · ILLUSTRATION RESERVED
+          </figure>
+        ))}
       </template>
     )}
 
     <nav class="chapter-nav" aria-label="章节导航">
-      <span>← 上一章</span>
+      {previous
+        ? <a href={`${base}novel/${previous.data.slug}/`}>← {previous.data.title}</a>
+        : <span>← 上一章</span>}
       <a href={`${base}novel/`}>目录</a>
-      <span>下一章 →</span>
+      {next
+        ? <a href={`${base}novel/${next.data.slug}/`}>{next.data.title} →</a>
+        : <span>下一章 →</span>}
     </nav>
   </article>
 

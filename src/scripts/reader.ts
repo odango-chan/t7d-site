@@ -41,8 +41,12 @@ document.querySelector("[data-reader-width]")?.addEventListener("click", () => {
   apply();
 });
 
-const template = document.querySelector<HTMLTemplateElement>("#day1-inline-slot");
+const template = document.querySelector<HTMLTemplateElement>("#inline-illustration-slots");
 const paragraphs = document.querySelectorAll(".prose p");
-if (template && paragraphs.length > 9) {
-  paragraphs[9].after(template.content.cloneNode(true));
+if (template && paragraphs.length > 10) {
+  const insertionIndex = Math.min(
+    paragraphs.length - 1,
+    Math.max(9, Math.floor(paragraphs.length * 0.35)),
+  );
+  paragraphs[insertionIndex].after(template.content.cloneNode(true));
 }

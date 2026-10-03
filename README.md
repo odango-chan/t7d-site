@@ -66,7 +66,18 @@ tools/           sync / repository checks when needed
 - [Repository Structure & File Governance](docs/governance/repository-structure.md)
 - [Publishing Boundary](docs/governance/publishing-boundary.md)
 
+## Current public release
+
+小说已同步当前 Release Draft：
+
+- Day 1～Day 7
+- Extra / Day 8
+- 可跳过的新读者导读《第一次来到幻想乡》
+
+公开副本保留逐文件 upstream provenance；正常正文修改仍先回生产真源，再重新发布。
+
 ## Content ownership
+
 
 公开小说等上游内容在本站是**发布副本**，必须保留 provenance，例如：
 

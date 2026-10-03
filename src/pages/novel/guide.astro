@@ -1,0 +1,49 @@
+---
+import { getCollection, render } from "astro:content";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import "../../styles/reader.css";
+
+const entries = await getCollection("novel");
+const guide = entries.find((entry) => entry.data.section === "guide");
+if (!guide) throw new Error("New reader guide release copy not found.");
+const { Content } = await render(guide);
+const base = import.meta.env.BASE_URL;
+---
+
+<SiteLayout title="第一次来到幻想乡">
+  <div class="reader-toolbar" aria-label="阅读导航">
+    <a href={`${base}novel/`}>← 小说目录</a>
+    <span class="spacer"></span>
+    <button type="button" data-reader-font-down aria-label="减小字号">A−</button>
+    <button type="button" data-reader-font-up aria-label="增大字号">A+</button>
+    <button type="button" data-reader-width aria-label="切换版心">宽</button>
+    <button type="button" data-reader-theme aria-label="切换明暗">明暗</button>
+  </div>
+
+  <article class="reader">
+    <header class="reader-head">
+      <p class="reader-kicker">New Reader Guide · Optional</p>
+      <h1 class="reader-title">第一次来到幻想乡</h1>
+      <div class="reader-daymark" aria-hidden="true">
+        <span>Start Here</span>
+        <strong>?</strong>
+      </div>
+    </header>
+
+    <div class="reader-ornament" aria-hidden="true">熟悉东方的读者可以直接跳过</div>
+
+    <div class="prose prose-guide">
+      <Content />
+    </div>
+
+    <nav class="chapter-nav" aria-label="阅读导航">
+      <span>← 导读</span>
+      <a href={`${base}novel/`}>目录</a>
+      <a href={`${base}novel/day-01/`}>第一日 →</a>
+    </nav>
+  </article>
+
+  <script>
+    import "../../scripts/reader";
+  </script>
+</SiteLayout>
