@@ -10,13 +10,13 @@
 ## Architecture
 
 - [Visual System — Seven-Day Editorial](architecture/visual-system.md)
+- [Home & Promotion Architecture](architecture/home-promotion.md) — 官网首页 IA、Key Visual 接入、Seven Days 叙事结构、移动端与 OG 边界
 
 后续仅在真实需要时建立：
 
 - content sync
 - media pipeline
 - deployment / release flow
-- public-site information architecture
 
 ## Decisions
 
