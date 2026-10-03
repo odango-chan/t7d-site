@@ -653,3 +653,102 @@ main.site-main {
     left: -.45rem;
   }
 }
+
+
+/* Home — narrative game landing page */
+.home-hero {
+  min-height: min(48rem, calc(100vh - 4.35rem));
+  display: grid;
+  grid-template-columns: minmax(18rem, .72fr) minmax(0, 1.28fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  padding: clamp(3.2rem, 7vw, 6.5rem) 0 4.5rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.home-hero-copy { max-width: 32rem; }
+.home-eyebrow { margin: 0 0 1rem; color: var(--vermilion); font-size: clamp(1.2rem, 2vw, 1.55rem); letter-spacing: .05em; }
+.home-title { margin: 0; font-size: clamp(3.4rem, 8vw, 7.2rem); line-height: .98; font-weight: 500; letter-spacing: .02em; }
+.home-title-en { margin: .9rem 0 0; color: var(--ink-soft); font-family: var(--sans); font-size: .72rem; letter-spacing: .17em; text-transform: uppercase; }
+.home-premise { max-width: 27rem; margin: 2.3rem 0 0; color: var(--ink-soft); font-size: 1rem; line-height: 2; }
+.home-actions { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 2rem; }
+
+.text-action { display: inline-flex; gap: .55rem; align-items: center; padding-bottom: .25rem; border-bottom: 1px solid var(--vermilion); font-family: var(--sans); font-size: .78rem; letter-spacing: .06em; text-decoration: none; }
+.text-action-muted { color: var(--ink-soft); border-bottom-color: var(--hairline); }
+
+.home-kv-placeholder {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  min-height: 25rem;
+  margin: 0;
+  overflow: hidden;
+  border-block: 1px solid var(--hairline);
+  background: linear-gradient(155deg, color-mix(in srgb, var(--sheet) 82%, var(--paper)), var(--paper-2));
+}
+
+.home-kv-placeholder::before { content: ""; position: absolute; inset: 8% 7%; border: 1px solid var(--hairline-soft); }
+.home-kv-placeholder figcaption { position: absolute; left: 1.2rem; bottom: 1rem; color: var(--ink-soft); font-family: var(--sans); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
+.kv-threshold { position: absolute; inset: 0; color: var(--ink-soft); font-family: var(--sans); font-size: .62rem; letter-spacing: .08em; }
+.kv-shrine { position: absolute; left: 10%; top: 20%; padding: .4rem .7rem; border-top: 1px solid var(--hairline); }
+.kv-torii { position: absolute; left: 47%; top: 34%; width: 4.5rem; height: 6rem; padding-top: .4rem; text-align: center; border: 1px solid var(--vermilion-soft); border-bottom: 0; color: var(--vermilion); }
+.kv-reimu { position: absolute; right: 14%; bottom: 16%; display: grid; place-items: center; width: 5.6rem; height: 11rem; border: 1px solid var(--vermilion); color: var(--vermilion); writing-mode: vertical-rl; }
+.kv-road { position: absolute; left: 17%; right: 28%; bottom: 20%; padding-top: .5rem; border-top: 1px dashed var(--hairline); transform: rotate(-7deg); }
+
+.home-intro, .seven-days, .read-section, .home-release { padding: clamp(4rem, 8vw, 7rem) 0; border-bottom: 1px solid var(--hairline); }
+.home-intro-grid, .home-feature { display: grid; grid-template-columns: minmax(0, .85fr) minmax(18rem, 1.15fr); gap: clamp(2rem, 8vw, 8rem); }
+.home-intro h2, .home-feature h2, .home-release h2 { margin: 0; font-size: clamp(1.8rem, 4vw, 3.4rem); line-height: 1.45; font-weight: 500; }
+.home-intro p, .feature-copy p, .home-release > p:last-child { margin: 0; color: var(--ink-soft); line-height: 2; }
+
+.section-heading-row { display: flex; justify-content: space-between; gap: 2rem; align-items: end; }
+.section-heading-row .section-title { margin-bottom: 0; }
+.section-note { max-width: 18rem; margin: 0 0 .25rem; color: var(--ink-soft); font-size: .82rem; line-height: 1.7; }
+
+.day-flow { list-style: none; margin: 3rem 0 0; padding: 0; border-top: 1px solid var(--hairline); }
+.day-entry { display: grid; grid-template-columns: minmax(8rem, .35fr) 1fr; gap: 2rem; padding: 1.55rem 0; border-bottom: 1px solid var(--hairline); }
+.day-index { display: flex; gap: 1rem; align-items: baseline; color: var(--vermilion); }
+.day-index span { color: var(--ink-soft); font-family: var(--sans); font-size: .62rem; letter-spacing: .1em; }
+.day-copy { display: grid; grid-template-columns: minmax(10rem, .75fr) 1.25fr; gap: 2rem; }
+.day-copy h3 { margin: 0; font-size: 1.12rem; font-weight: 500; }
+.day-copy p { margin: 0; color: var(--ink-soft); font-size: .88rem; line-height: 1.8; }
+
+.home-feature { padding: clamp(4rem, 8vw, 7rem) 0; border-bottom: 1px solid var(--hairline); }
+.home-feature-game { position: relative; }
+.home-feature-game::before { content: "VERTICAL DANMAKU"; position: absolute; right: 0; top: 1.4rem; color: var(--hairline); font-family: var(--sans); font-size: .6rem; letter-spacing: .16em; }
+.feature-copy .text-action { margin-top: 1.5rem; }
+
+.read-grid { display: grid; grid-template-columns: 1fr 1fr; margin-top: 2.5rem; border-top: 1px solid var(--hairline); }
+.read-entry { display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.2rem; padding: 2rem 2rem 2rem 0; text-decoration: none; border-bottom: 1px solid var(--hairline); }
+.read-entry + .read-entry { padding-left: 2rem; border-left: 1px solid var(--hairline); }
+.read-no, .read-state { color: var(--ink-soft); font-family: var(--sans); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; }
+.read-entry h3 { margin: 0 0 .8rem; font-size: 1.6rem; font-weight: 500; }
+.read-entry p { margin: 0; color: var(--ink-soft); font-size: .88rem; line-height: 1.8; }
+.read-state { grid-column: 2; margin-top: .7rem; }
+.read-entry:hover h3 { color: var(--vermilion); }
+
+.home-release { max-width: 46rem; }
+.home-release h2 { margin-bottom: 1.2rem; }
+
+@media (max-width: 860px) {
+  .home-hero { grid-template-columns: 1fr; min-height: auto; }
+  .home-kv-placeholder { grid-row: 1; min-height: 20rem; }
+  .home-hero-copy { grid-row: 2; max-width: 38rem; }
+  .home-intro-grid, .home-feature { grid-template-columns: 1fr; gap: 1.8rem; }
+}
+
+@media (max-width: 640px) {
+  .home-hero { padding-top: 2.2rem; gap: 2rem; }
+  .home-kv-placeholder { aspect-ratio: 4 / 5; min-height: 0; }
+  .home-title { font-size: clamp(3.2rem, 16vw, 5rem); }
+  .home-premise { margin-top: 1.6rem; }
+  .kv-shrine { top: 12%; }
+  .kv-torii { left: 20%; top: 38%; }
+  .kv-reimu { right: 14%; bottom: 14%; height: 10rem; }
+  .kv-road { left: 10%; right: 22%; bottom: 25%; }
+  .section-heading-row { display: block; }
+  .section-note { margin-top: 1rem; }
+  .day-entry { grid-template-columns: 1fr; gap: .8rem; }
+  .day-copy { grid-template-columns: 1fr; gap: .5rem; }
+  .read-grid { grid-template-columns: 1fr; }
+  .read-entry { padding-right: 0; }
+  .read-entry + .read-entry { padding-left: 0; border-left: 0; }
+}
