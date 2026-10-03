@@ -1,0 +1,52 @@
+
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "東方七日祭 ～ Seven Days of Leisure",
+  description = "《東方七日祭》公开作品站：小说、漫画、人物与游戏。",
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const fullTitle = title.includes("東方七日祭") ? title : `${title} · 東方七日祭`;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f5f2ea" />
+    <title>{fullTitle}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-shell site-header-inner">
+        <a class="brand" href={base}>東方七日祭</a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href={`${base}novel/`}>小说</a>
+          <a href={`${base}manga/`}>漫画</a>
+          <a href={`${base}characters/`}>人物</a>
+          <a href={`${base}game/`}>游戏</a>
+          <a href={`${base}about/`}>关于</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="site-main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-shell">
+        非官方东方 Project 二次创作。与上海爱丽丝幻乐团 / Team Shanghai Alice 无隶属关系。
+      </div>
+    </footer>
+  </body>
+</html>
