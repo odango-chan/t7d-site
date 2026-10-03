@@ -892,6 +892,14 @@ main.site-main {
 }
 
 @media (max-width: 640px) {
+  .home-hero-copy {
+    grid-row: 1;
+  }
+
+  .home-kv {
+    grid-row: 2;
+  }
+
   .home-kv img {
     aspect-ratio: 4 / 5;
     object-position: center;
