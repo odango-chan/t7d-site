@@ -1,4 +1,3 @@
-
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 const base = import.meta.env.BASE_URL;
@@ -6,38 +5,53 @@ const base = import.meta.env.BASE_URL;
 
 <SiteLayout>
   <div class="site-shell">
-    <section class="hero">
-      <div>
-        <p class="eyebrow">Touhou fan project · public site</p>
-        <h1>東方七日祭</h1>
-        <p class="subtitle">
-          人间忽有七日闲。<br />
-          小说、漫画与弹幕游戏，共用同一段七日故事。
+    <section class="hero-editorial">
+      <div class="hero-copy">
+        <p class="folio">T7D · PUBLIC EDITION · 01</p>
+        <p class="epigraph">人间忽有七日闲。</p>
+        <p class="hero-lead">
+          幻想乡忽然有了七天闲日。大家出门、绕路、排队、收拾、问来问去，
+          最后又各自回到原来的生活里。
         </p>
       </div>
-      <div class="cover-placeholder">
-        NVI-COV-01<br />
-        封面原画待生成
+
+      <figure class="hero-plate">
+        <figcaption>
+          NVI-COV-01<br />
+          COVER ART RESERVED
+        </figcaption>
+      </figure>
+
+      <div class="hero-title-block" aria-label="東方七日祭 Seven Days of Leisure">
+        <h1 class="hero-title">東方七日祭</h1>
+        <p class="hero-title-en">Seven Days of Leisure</p>
       </div>
     </section>
 
-    <section class="section">
-      <h2>作品</h2>
-      <div class="card-grid">
-        <a class="card" href={`${base}novel/`}>
-          <small>Novel</small>
-          <h3>小说</h3>
-          <p>Release Draft Candidate。第一日已迁移到公开阅读版。</p>
+    <section class="work-index" aria-labelledby="works-title">
+      <p class="section-kicker">Works</p>
+      <h2 class="section-title" id="works-title">作品目录</h2>
+
+      <div class="work-list">
+        <a class="work-entry" href={`${base}novel/`}>
+          <span class="work-no">01</span>
+          <h3 class="work-name">小说</h3>
+          <p class="work-desc">先从文字里走完这七天。当前开放第一日阅读。</p>
+          <span class="work-state">Reading</span>
         </a>
-        <a class="card" href={`${base}manga/`}>
-          <small>Manga</small>
-          <h3>漫画</h3>
-          <p>后续接入正式页面与在线阅读。</p>
+
+        <a class="work-entry" href={`${base}manga/`}>
+          <span class="work-no">02</span>
+          <h3 class="work-name">漫画</h3>
+          <p class="work-desc">同一故事的画面版本；正式页面与装画完成后陆续公开。</p>
+          <span class="work-state">Preparing</span>
         </a>
-        <a class="card" href={`${base}game/`}>
-          <small>Game</small>
-          <h3>游戏</h3>
-          <p>未来承载游戏介绍、PV、截图、商店与 Releases 下载入口。</p>
+
+        <a class="work-entry" href={`${base}game/`}>
+          <span class="work-no">03</span>
+          <h3 class="work-name">游戏</h3>
+          <p class="work-desc">竖版弹幕游戏。未来在这里放试玩、版本、商店与下载入口。</p>
+          <span class="work-state">In Development</span>
         </a>
       </div>
     </section>
