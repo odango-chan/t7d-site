@@ -53,7 +53,7 @@ Preferred rhythm: large image → quiet prose → seven-day rhythm → gameplay 
 Desktop may use a wide hero and broader Seven Days rhythm. Mobile uses portrait hero art, keeps titles off complex faces, converts Seven Days to a vertical flow, and keeps core content usable without animation.
 
 ## Site asset contract
-Release copies should use stable semantic names:
+Presentation assets used only by the site should use semantic source names:
 
     src/assets/promotion/hero-landscape.*
     src/assets/promotion/hero-portrait.*
@@ -61,6 +61,37 @@ Release copies should use stable semantic names:
     src/assets/promotion/social-og.*
 
 Keep upstream provenance for imported assets.
+
+## Press / media downloads
+
+Stable public download location:
+
+> /press/
+
+Registry owner:
+
+> src/data/releases/press-assets.ts
+
+Only upstream Accepted, public-safe exports may be registered.
+
+Press download artifacts are the narrow exception to the normal "feature media stays under src/assets" rule: files that need stable external download URLs may live under:
+
+    public/press/logo/
+    public/press/key-visual/
+    public/press/poster/
+    public/press/social/
+
+Recommended stable filenames:
+
+    touhou-seven-days-logo.png
+    touhou-seven-days-logo-white.png
+    touhou-seven-days-key-visual-landscape.jpg
+    touhou-seven-days-poster-portrait.jpg
+    touhou-seven-days-social-1200x630.jpg
+
+The existing production preview images are not press assets and must never be auto-registered.
+
+When the registry is empty, /press/ renders an honest no-assets state and no fake download cards.
 
 ## SEO / social
 Provide title, description, canonical URL, OG title, OG description, OG image, and fan-work wording where appropriate. OG art is an explicitly reviewed 1.91:1 derivative, not a browser screenshot.
