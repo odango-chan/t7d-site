@@ -896,18 +896,14 @@ main.site-main {
 
 .seven-days-panorama {
   position: relative;
-  width: 100%;
-  height: clamp(11rem, 20vw, 16rem);
-  margin: 0;
-  overflow: hidden;
+  width: min(42%, 28rem);
+  margin: clamp(2.4rem, 5vw, 4rem) auto clamp(3.2rem, 6vw, 5rem);
 }
 
 .seven-days-panorama img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
 }
 
 @media (max-width: 860px) {
@@ -917,7 +913,8 @@ main.site-main {
 
 @media (max-width: 640px) {
   .seven-days-panorama {
-    height: clamp(10rem, 48vw, 14rem);
+    width: min(78%, 24rem);
+    margin-block: 2.2rem 3rem;
   }
 
   .home-hero-copy {
