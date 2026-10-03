@@ -66,6 +66,35 @@ The site owns presentation, release metadata and links.
 
 Only Web-ready accepted assets belong in this repository.
 
+Normal site presentation media stays under `src/assets/`.
+
+### Stable press-download exception
+
+`public/press/` is reserved only for **Accepted public press exports that require stable, non-hashed external download URLs**.
+
+Allowed examples:
+
+- approved Logo PNG / SVG;
+- approved Key Visual Web export;
+- approved poster export;
+- approved social / OG press derivative.
+
+Not allowed:
+
+- production previews;
+- reference sheets;
+- prompts;
+- QA screenshots;
+- source masters;
+- working files;
+- unaccepted generated art.
+
+Every press file must be represented in `src/data/releases/press-assets.ts` with upstream provenance.
+
+Do not use `public/press/` as a general media dump.
+
+Working-source files and production masters remain upstream.
+
 Working-source files and production masters remain upstream.
 
 If public media eventually makes this repository too large, move heavy delivery assets to object storage / CDN instead of turning this repository into an archive.
