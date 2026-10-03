@@ -1,0 +1,30 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import CharacterFolio from "../../components/characters/CharacterFolio.astro";
+import { characters } from "../../data/characters/characters";
+import "../../styles/characters.css";
+---
+
+<SiteLayout title="人物">
+  <div class="site-shell">
+    <header class="page-head characters-head">
+      <p class="section-kicker">Characters · Public Catalogue</p>
+      <h1>人物</h1>
+      <p>
+        这里不按关卡、Boss 或剧情职责给人物分类。
+        只留下读者第一次认识一个人真正需要的东西：名字、身份、性格和她自己会说的一句话。
+      </p>
+    </header>
+
+    <section class="character-intro" aria-label="人物目录说明">
+      <span>11 CHARACTERS</span>
+      <p>肖像将在整组达到公开标准后一次接入；当前统一保留版位，避免视觉权重提前暗示剧情。</p>
+    </section>
+
+    <section class="character-catalogue">
+      {characters.map((character) => (
+        <CharacterFolio character={character} />
+      ))}
+    </section>
+  </div>
+</SiteLayout>
