@@ -896,7 +896,8 @@ main.site-main {
 
 .seven-days-panorama {
   position: relative;
-  margin: 0;
+  width: min(90%, 64rem);
+  margin: 0 auto;
   padding: clamp(1.1rem, 2.4vw, 1.7rem) 0 clamp(2.2rem, 4vw, 3.2rem);
   border-top: 1px solid color-mix(in srgb, var(--hairline) 72%, transparent);
   border-bottom: 1px solid color-mix(in srgb, var(--hairline) 72%, transparent);
@@ -924,6 +925,10 @@ main.site-main {
 }
 
 @media (max-width: 640px) {
+  .seven-days-panorama {
+    width: 100%;
+  }
+
   .home-hero-copy {
     grid-row: 1;
   }
