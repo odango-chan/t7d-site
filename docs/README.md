@@ -9,6 +9,8 @@
 
 ## Architecture
 
+- [Visual System — Seven-Day Editorial](architecture/visual-system.md)
+
 后续仅在真实需要时建立：
 
 - content sync
