@@ -6,11 +6,14 @@ import hashlib
 import re
 from pathlib import Path
 import sys
+import tempfile
+from urllib.request import urlopen
 import yaml
 
 
 SITE_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_UPSTREAM = SITE_ROOT.parent / "touhou-seven-days"
+RAW_BASE = "https://raw.githubusercontent.com/odango-chan/touhou-seven-days/{ref}/{path}"
 
 FRONTMATTER_RE = re.compile(r"^---\n([\s\S]*?)\n---\n?", re.MULTILINE)
 HTML_COMMENT_RE = re.compile(r"<!--([\s\S]*?)-->", re.MULTILINE)
@@ -33,6 +36,36 @@ LEAK_TOKENS = (
     "pressure-test",
     "copyedit pass",
 )
+
+
+def fetch_bytes(ref: str, relative_path: str) -> bytes:
+    url = RAW_BASE.format(ref=ref, path=relative_path)
+    with urlopen(url, timeout=30) as response:
+        return response.read()
+
+
+def materialize_public_upstream(ref: str, root: Path) -> None:
+    manifest_rel = str(UPSTREAM_MANIFEST)
+    manifest_bytes = fetch_bytes(ref, manifest_rel)
+    manifest_path = root / UPSTREAM_MANIFEST
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    manifest_path.write_bytes(manifest_bytes)
+
+    manifest = yaml.safe_load(manifest_bytes.decode("utf-8"))
+    if not isinstance(manifest, dict):
+        raise ValueError("downloaded upstream release manifest must be a mapping")
+
+    sources: set[str] = {"docs/production/novel/release/reader-guide.md"}
+    for entry in chapter_entries(manifest):
+        source = entry.get("source")
+        if isinstance(source, str):
+            sources.add(source)
+
+    for relative_path in sorted(sources):
+        data = fetch_bytes(ref, relative_path)
+        target = root / relative_path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(data)
 
 
 def git_blob_sha(path: Path) -> str:
@@ -254,13 +287,35 @@ def main() -> int:
     parser.add_argument(
         "--upstream-root",
         type=Path,
-        default=DEFAULT_UPSTREAM,
-        help="Path to the checked-out odango-chan/touhou-seven-days repository",
+        help="Path to a local odango-chan/touhou-seven-days checkout",
+    )
+    parser.add_argument(
+        "--fetch-upstream",
+        action="store_true",
+        help="Fetch the public upstream release contract from raw.githubusercontent.com",
+    )
+    parser.add_argument(
+        "--upstream-ref",
+        default="main",
+        help="Public upstream ref used with --fetch-upstream (default: main)",
     )
     args = parser.parse_args()
 
-    upstream_root = args.upstream_root.resolve()
-    errors = validate(upstream_root)
+    if args.upstream_root and args.fetch_upstream:
+        parser.error("choose either --upstream-root or --fetch-upstream")
+
+    if args.fetch_upstream:
+        with tempfile.TemporaryDirectory(prefix="t7d-upstream-") as temp:
+            upstream_root = Path(temp)
+            try:
+                materialize_public_upstream(args.upstream_ref, upstream_root)
+            except Exception as exc:
+                print(f"Novel release contract FAILED\n- unable to fetch upstream: {exc}")
+                return 1
+            errors = validate(upstream_root)
+    else:
+        upstream_root = (args.upstream_root or DEFAULT_UPSTREAM).resolve()
+        errors = validate(upstream_root)
 
     if errors:
         print("Novel release contract FAILED")
