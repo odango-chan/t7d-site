@@ -30,7 +30,13 @@ const base = import.meta.env.BASE_URL;
     <header class="reader-head">
       <p class="reader-kicker">Novel · Release Candidate</p>
       <h1 class="reader-title">{chapter.data.title}</h1>
+      <div class="reader-daymark" aria-hidden="true">
+        <span>Seven-Day Notes</span>
+        <strong>{String(chapter.data.order ?? 0).padStart(2, "0")}</strong>
+      </div>
     </header>
+
+    <div class="reader-ornament" aria-hidden="true">T7D · TEXT EDITION</div>
 
     <figure class="illustration-slot" data-slot={chapter.data.openerSlot}>
       {chapter.data.openerSlot} · CHAPTER FRONTISPIECE
