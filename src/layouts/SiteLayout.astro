@@ -13,6 +13,8 @@ const {
 
 const base = import.meta.env.BASE_URL;
 const fullTitle = title.includes("東方七日祭") ? title : `${title} · 東方七日祭`;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const ogImage = new URL(`${base}social-og.svg`, Astro.site ?? Astro.url.origin);
 ---
 
 <!doctype html>
@@ -22,6 +24,12 @@ const fullTitle = title.includes("東方七日祭") ? title : `${title} · 東�
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f1ede4" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
     <title>{fullTitle}</title>
   </head>
   <body>
