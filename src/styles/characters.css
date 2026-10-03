@@ -43,7 +43,14 @@
   display: grid;
   grid-template-columns: 2.4rem 1fr;
   gap: 1rem;
-  align-content: start;
+  align-content: stretch;
+  min-height: 100%;
+}
+
+.character-index > div {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
 }
 
 .character-no {
@@ -69,6 +76,45 @@
   line-height: 1.5;
   letter-spacing: .08em;
   text-transform: uppercase;
+}
+
+.character-spine {
+  display: flex;
+  flex: 1;
+  min-height: 9rem;
+  margin-top: 1.7rem;
+  gap: .75rem;
+  align-items: stretch;
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: .52rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.character-spine span {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.character-spine i {
+  position: relative;
+  display: block;
+  width: 1px;
+  flex: 1;
+  background: linear-gradient(to bottom, var(--hairline), transparent);
+}
+
+.character-spine i::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: .34rem;
+  height: .34rem;
+  border-radius: 50%;
+  background: var(--vermilion);
+  transform: translate(-50%, -.08rem);
 }
 
 .character-portrait {
@@ -231,6 +277,27 @@
 
   .character-index {
     grid-template-columns: 2rem 1fr;
+    min-height: auto;
+  }
+
+  .character-index > div {
+    min-height: auto;
+  }
+
+  .character-spine {
+    min-height: 3rem;
+    margin-top: 1rem;
+  }
+
+  .character-spine span {
+    writing-mode: horizontal-tb;
+  }
+
+  .character-spine i {
+    align-self: center;
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(90deg, var(--hairline), transparent);
   }
 
   .character-portrait {
