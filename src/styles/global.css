@@ -886,6 +886,29 @@ main.site-main {
   margin-top: 0;
 }
 
+.seven-days-panorama {
+  position: relative;
+  margin: 0;
+  padding: clamp(1.1rem, 2.4vw, 1.7rem) 0 clamp(2.2rem, 4vw, 3.2rem);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.seven-days-panorama img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.seven-days-panorama figcaption {
+  margin-top: .65rem;
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: .5rem;
+  letter-spacing: .09em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
 @media (max-width: 860px) {
   .home-kv { grid-row: 1; }
   .home-title-lockup { width: min(100%, 34rem); }
