@@ -1,0 +1,127 @@
+.press-head {
+  margin-bottom: 0;
+}
+
+.press-rules {
+  display: grid;
+  grid-template-columns: minmax(10rem, 15rem) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  padding: 2.5rem 0 3.5rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.press-rules h2,
+.press-section h2,
+.press-empty h2 {
+  margin: .45rem 0 0;
+  font-weight: 500;
+}
+
+.press-rule-copy {
+  max-width: 42rem;
+  color: var(--ink-soft);
+  line-height: 1.9;
+}
+
+.press-rule-copy p:first-child {
+  margin-top: 0;
+}
+
+.press-sections {
+  padding-bottom: 4rem;
+}
+
+.press-section {
+  padding: 3.5rem 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.press-section-head {
+  display: grid;
+  grid-template-columns: minmax(10rem, 15rem) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  margin-bottom: 2rem;
+}
+
+.press-assets {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.press-asset {
+  display: grid;
+  grid-template-columns: minmax(14rem, 28rem) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.press-preview {
+  margin: 0;
+  border: 1px solid var(--hairline);
+  background: var(--sheet);
+}
+
+.press-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.press-asset-copy h3 {
+  margin: 0 0 .8rem;
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  font-weight: 500;
+}
+
+.press-asset-copy p {
+  max-width: 34rem;
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+
+.press-downloads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem 1.4rem;
+  margin-top: 1.5rem;
+}
+
+.press-downloads a {
+  display: inline-flex;
+  gap: .55rem;
+  align-items: baseline;
+  text-decoration: none;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: .25rem;
+}
+
+.press-downloads span {
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: .55rem;
+  letter-spacing: .08em;
+}
+
+.press-empty {
+  max-width: 46rem;
+  padding: clamp(4rem, 9vw, 7rem) 0;
+}
+
+.press-empty h2 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.press-empty > p:last-child {
+  max-width: 35rem;
+  color: var(--ink-soft);
+  line-height: 1.9;
+}
+
+@media (max-width: 760px) {
+  .press-rules,
+  .press-section-head,
+  .press-asset {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+}
