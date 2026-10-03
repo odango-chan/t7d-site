@@ -872,7 +872,7 @@ main.site-main {
   position: relative;
   grid-column: 2;
   grid-row: 1;
-  width: min(100%, 28rem);
+  width: min(95%, 26.5rem);
   justify-self: end;
   margin: 0;
   padding: .55rem .55rem 2rem;
