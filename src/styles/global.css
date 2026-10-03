@@ -797,7 +797,7 @@ main.site-main {
 }
 
 .home-kv figcaption,
-.seven-days-poster figcaption {
+.seven-days-portrait figcaption {
   position: absolute;
   left: .85rem;
   bottom: .7rem;
@@ -852,19 +852,38 @@ main.site-main {
   }
 }
 
-.seven-days-poster {
-  position: relative;
-  width: min(100%, 34rem);
-  margin: 3rem auto 3.5rem;
-  overflow: hidden;
-  border-block: 1px solid var(--hairline);
-  background: var(--paper-2);
+.seven-days-spread {
+  display: grid;
+  grid-template-columns: minmax(15rem, .72fr) minmax(0, 1.28fr);
+  gap: clamp(2.4rem, 6vw, 6rem);
+  align-items: start;
+  margin-top: 3rem;
 }
 
-.seven-days-poster img {
+.seven-days-portrait {
+  position: relative;
+  margin: 0;
+  padding: .55rem .55rem 2rem;
+  background: linear-gradient(145deg, #241c19 0%, #2b211d 100%);
+}
+
+.seven-days-portrait img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.seven-days-portrait figcaption {
+  left: .55rem;
+  bottom: .45rem;
+  padding: 0;
+  background: transparent;
+  color: #d8c6a8;
+  backdrop-filter: none;
+}
+
+.seven-days-spread .day-flow {
+  margin-top: 0;
 }
 
 @media (max-width: 860px) {
@@ -883,12 +902,16 @@ main.site-main {
   }
 
   .home-kv figcaption,
-  .seven-days-poster figcaption {
+  .seven-days-portrait figcaption {
     font-size: .48rem;
   }
 
-  .seven-days-poster {
-    width: min(100%, 25rem);
-    margin-top: 2.2rem;
+  .seven-days-spread {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .seven-days-portrait {
+    display: none;
   }
 }
