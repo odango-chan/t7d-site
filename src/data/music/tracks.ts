@@ -1,4 +1,4 @@
-export type MusicTrackKind = "stage" | "boss" | "character-boss";
+export type MusicTrackKind = "theme" | "stage" | "boss" | "character-boss";
 
 export interface MusicTrack {
   id: string;
@@ -14,6 +14,14 @@ export interface MusicTrack {
 }
 
 export const musicTracks: MusicTrack[] = [
+  {
+    id: "lets-go-see",
+    title: "先去看看吧",
+    titleEn: "Let’s Go See",
+    kind: "theme",
+    kindLabel: "主题曲",
+    description: "《東方七日祭》的正式主题曲。故事从灵梦那句随口的“先去看看吧”开始，主旋律也会在游戏里的其他曲目中留下回声。",
+  },
   {
     id: "holiday-road",
     title: "闲人满山路",
@@ -41,8 +49,8 @@ export const musicTracks: MusicTrack[] = [
     title: "檐下三响",
     titleEn: "Echoes of Shishi",
     kind: "character-boss",
-    kindLabel: "诗诗 Boss 曲",
+    kindLabel: "沈诗诗角色曲 / Boss Theme",
     character: "沈诗诗",
-    description: "属于沈诗诗的 Boss 曲。和前面的山路不同，这一首更贴近她自己的气质与节奏。",
+    description: "沈诗诗的核心角色同人曲，同时也是她的 Boss Theme。它不是另一首独立的“诗诗 Boss 曲”；角色曲与战斗主题使用的是同一个音乐核心。",
   },
 ];
