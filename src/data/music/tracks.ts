@@ -15,6 +15,8 @@ export interface MusicTrack {
   kindLabel: string;
   day?: number | string;
   character?: string;
+  cover: string;
+  coverPlaceholder?: boolean;
   description: string;
   versions: MusicTrackVersion[];
 }
@@ -26,6 +28,8 @@ export const musicTracks: MusicTrack[] = [
     titleEn: "Let’s Go See",
     kind: "theme",
     kindLabel: "主题曲",
+    cover: "media/promotion/p02-seven-days.png",
+    coverPlaceholder: true,
     description: "《東方七日祭》的正式主题曲。故事从灵梦那句随口的“先去看看吧”开始；Piano Version 则把同一旋律收得更安静。",
     versions: [
       {
@@ -48,6 +52,8 @@ export const musicTracks: MusicTrack[] = [
     kind: "stage",
     kindLabel: "道中曲",
     day: 1,
+    cover: "media/promotion/p02-seven-days.png",
+    coverPlaceholder: true,
     description: "第一日的山路曲。人比平时多，路却还是那条路；灵梦就这样一路看过去。",
     versions: [
       {
@@ -63,6 +69,8 @@ export const musicTracks: MusicTrack[] = [
     kind: "boss",
     kindLabel: "Boss 曲",
     day: 1,
+    cover: "media/promotion/p02-seven-days.png",
+    coverPlaceholder: true,
     description: "第一日的 Boss 曲。路走到这里，终于有人很认真地说：不许再往前。",
     versions: [
       {
@@ -79,6 +87,8 @@ export const musicTracks: MusicTrack[] = [
     kindLabel: "Boss 曲",
     day: "6 → 7",
     character: "沈诗诗",
+    cover: "media/promotion/p02-seven-days.png",
+    coverPlaceholder: true,
     description: "沈诗诗的核心角色同人曲，同时也是她的 Final Boss Theme。战斗从第六日深夜跨到第七日清晨；纯音乐版保留游戏感，Vocal Version 则把诗诗与檐下回声写得更完整。",
     versions: [
       {
