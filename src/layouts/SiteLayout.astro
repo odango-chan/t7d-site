@@ -8,7 +8,7 @@ interface Props {
 
 const {
   title = "東方七日祭 ～ Seven Days of Leisure",
-  description = "《東方七日祭》公开作品站：小说、漫画、人物与游戏。",
+  description = "《東方七日祭》公开作品站：小说、漫画、人物、音乐与游戏。",
 } = Astro.props;
 
 const base = import.meta.env.BASE_URL;
@@ -41,6 +41,7 @@ const ogImage = new URL(`${base}social-og.svg`, Astro.site ?? Astro.url.origin);
           <a href={`${base}manga/`}>漫画</a>
           <a href={`${base}characters/`}>人物</a>
           <a href={`${base}game/`}>游戏</a>
+          <a href={`${base}music/`}>音乐</a>
           <a href={`${base}about/`}>关于</a>
         </nav>
       </div>
