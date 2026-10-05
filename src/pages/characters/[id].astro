@@ -31,30 +31,30 @@ const artSrc = character.art ? `${base}${character.art.src}` : null;
       <span>{no} / {total}</span>
     </nav>
 
-    <header class="character-detail-head">
-      <div>
+    <section class:list={["character-detail-hero", character.art && "character-detail-hero--with-art"]}>
+      <div class="character-detail-hero-copy">
         <p class="section-kicker">Character Notes</p>
         <h1>{character.name}</h1>
         <p class="character-detail-romanized">{character.romanized}</p>
-      </div>
-      <blockquote>“{character.quote}”</blockquote>
-    </header>
 
-    <section class="character-detail-lead" aria-label="人物小记">
-      <div>
-        <p class="character-detail-eyebrow">人物小记</p>
-        <p>{character.summary}</p>
+        <blockquote>“{character.quote}”</blockquote>
+
+        <div class="character-detail-summary">
+          <p class="character-detail-eyebrow">人物小记</p>
+          <p>{character.summary}</p>
+        </div>
+
+        <div class="character-detail-scope">
+          <span>{character.origin}</span>
+        </div>
       </div>
+
       {
-        character.art && artSrc ? (
+        character.art && artSrc && (
           <figure class="character-detail-art">
             <img src={artSrc} alt={character.art.alt} />
             {character.art.caption && <figcaption>{character.art.caption}</figcaption>}
           </figure>
-        ) : (
-          <div class="character-detail-scope">
-            <span>{character.origin}</span>
-          </div>
         )
       }
     </section>
