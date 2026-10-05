@@ -23,13 +23,18 @@ const base = import.meta.env.BASE_URL;
           <p class="section-kicker">Soundtrack</p>
           <h2 id="music-list-title">曲目</h2>
         </div>
-        <p>当前先整理已经定下来的曲目。可公开版本会直接提供试听；有人声歌词的版本也会在播放器下方收录实际唱词。</p>
+        <p>每首曲目会有自己的封面。正式封面仍在制作的曲目先用统一视觉占位；可公开版本直接提供试听，有人声歌词的版本也会收录实际唱词。</p>
       </div>
 
       <div class="music-list">
         {musicTracks.map((track, index) => (
           <article class="music-track" id={track.id}>
             <div class="music-track-index">{String(index + 1).padStart(2, "0")}</div>
+
+            <figure class="music-track-cover">
+              <img src={base + track.cover} alt={`${track.title}曲目封面`} loading="lazy" />
+              {track.coverPlaceholder && <figcaption>封面制作中</figcaption>}
+            </figure>
 
             <div class="music-track-copy">
               <div class="music-track-meta">
