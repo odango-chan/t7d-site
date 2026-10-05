@@ -21,6 +21,7 @@ export const musicTracks: MusicTrack[] = [
     kind: "stage",
     kindLabel: "道中曲",
     day: 1,
+    duration: "2:59",
     description: "第一日的山路曲。人比平时多，路却还是那条路；灵梦就这样一路看过去。",
   },
   {
@@ -30,6 +31,7 @@ export const musicTracks: MusicTrack[] = [
     kind: "boss",
     kindLabel: "Boss 曲",
     day: 1,
+    duration: "2:25",
     description: "第一日的 Boss 曲。路走到这里，终于有人很认真地说：不许再往前。",
   },
   {
