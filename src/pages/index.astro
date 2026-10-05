@@ -1,6 +1,8 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import { musicTracks } from "../data/music/tracks";
 const base = import.meta.env.BASE_URL;
+const featuredTracks = musicTracks.slice(0, 3);
 
 const days = [
   ["第一日", "人忽然多了起来。", "神社外的路比平时热闹，灵梦想清静一会儿都难。"],
@@ -13,7 +15,7 @@ const days = [
 ];
 ---
 
-<SiteLayout description="《東方七日祭 ～ Seven Days of Leisure》作品站，收录小说、漫画、人物资料与游戏开发记录。">
+<SiteLayout description="《東方七日祭 ～ Seven Days of Leisure》作品站，收录小说、漫画、人物、音乐与游戏开发记录。">
   <div class="site-shell">
     <section class="home-hero" aria-labelledby="home-title">
       <div class="home-hero-copy">
@@ -72,6 +74,24 @@ const days = [
       <div class="feature-copy">
         <p>游戏版按竖版弹幕射击来做。人物和地点与小说、漫画共用，关卡、弹幕和操作则按游戏自己的节奏处理。</p>
         <a class="text-action" href={base + "game/"}>查看游戏进展 <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+
+    <section class="home-feature home-feature-music" aria-labelledby="music-title">
+      <div><p class="section-kicker">Music</p><h2 id="music-title">七天，也有自己的声音。</h2></div>
+      <div class="feature-copy">
+        <p>道中、Boss 和角色曲会按公开进度收进 Music Room。试听只在主动点击后播放，不会一进站就响。</p>
+        <ol class="home-music-list">
+          {featuredTracks.map((track, index) => (
+            <li>
+              <span class="home-music-no">{String(index + 1).padStart(2, "0")}</span>
+              <span class="home-music-name">{track.title} ～ {track.titleEn}</span>
+              <span class="home-music-meta">{track.day ? `Day ${track.day} · ` : ""}{track.kindLabel}</span>
+            </li>
+          ))}
+        </ol>
+        <a class="text-action" href={base + "music/"}>进入 Music Room <span aria-hidden="true">→</span></a>
       </div>
     </section>
 
