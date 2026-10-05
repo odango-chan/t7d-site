@@ -2,7 +2,7 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 import { musicTracks } from "../data/music/tracks";
 const base = import.meta.env.BASE_URL;
-const featuredTracks = musicTracks.slice(0, 3);
+const featuredTracks = musicTracks.slice(0, 4);
 
 const days = [
   ["第一日", "人忽然多了起来。", "神社外的路比平时热闹，灵梦想清静一会儿都难。"],
@@ -87,7 +87,7 @@ const days = [
             <li>
               <span class="home-music-no">{String(index + 1).padStart(2, "0")}</span>
               <span class="home-music-name">{track.title} ～ {track.titleEn}</span>
-              <span class="home-music-meta">{track.day ? `Day ${track.day} · ` : ""}{track.kindLabel}</span>
+              <span class="home-music-meta">{track.kindLabel}{track.day ? ` · Day ${track.day}` : track.character ? ` · ${track.character}` : ""}</span>
             </li>
           ))}
         </ol>
