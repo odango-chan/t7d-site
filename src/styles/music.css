@@ -197,3 +197,46 @@
     margin-left: 0;
   }
 }
+
+
+.music-lyrics {
+  margin-top: .15rem;
+  border-top: 1px solid var(--hairline-soft);
+}
+
+.music-lyrics summary {
+  width: fit-content;
+  padding: .75rem 0 .15rem;
+  color: var(--vermilion);
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: .68rem;
+  letter-spacing: .08em;
+  user-select: none;
+}
+
+.music-lyrics summary:hover {
+  color: var(--ink);
+}
+
+.music-lyrics pre {
+  max-height: 28rem;
+  overflow: auto;
+  margin: .8rem 0 .2rem;
+  padding: 1rem 1.1rem;
+  border-left: 1px solid var(--vermilion-soft);
+  background: color-mix(in srgb, var(--sheet) 42%, transparent);
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: .82rem;
+  line-height: 1.9;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 640px) {
+  .music-lyrics pre {
+    max-height: 24rem;
+    padding: .85rem .9rem;
+    font-size: .78rem;
+  }
+}
