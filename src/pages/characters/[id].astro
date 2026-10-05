@@ -17,6 +17,7 @@ interface Props {
 const { character } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const no = String(character.order).padStart(2, "0");
+const total = String(characters.length).padStart(2, "0");
 const coverage = [
   ["基础资料", 6],
   ["视觉要点", 4 + (character.visual.palette ? 1 : 0)],
@@ -33,7 +34,7 @@ const coverage = [
   <div class="site-shell character-detail-shell">
     <nav class="character-detail-nav" aria-label="人物设定导航">
       <a href={`${base}characters/`}>← 返回人物目录</a>
-      <span>{no} / 11</span>
+      <span>{no} / {total}</span>
     </nav>
 
     <header class="character-detail-head">
