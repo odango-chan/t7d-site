@@ -12,6 +12,12 @@ export interface PublicCharacterArt {
   caption?: string;
 }
 
+export interface PublicCharacterGalleryArt {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
 export interface PublicCharacter {
   id: string;
   order: number;
@@ -32,6 +38,8 @@ export interface PublicCharacter {
   expressions: string[];
   poses: string[];
   art?: PublicCharacterArt;
+  expressionsArt?: PublicCharacterGalleryArt;
+  posesArt?: PublicCharacterGalleryArt;
   upstreamRepo: string;
   upstreamPath: string;
   upstreamSha: string;
@@ -67,6 +75,16 @@ export const characters: PublicCharacter[] = [
       src: "media/promotion/kv-02-portrait-preview.png",
       alt: "《東方七日祭》竖版主视觉中的博丽灵梦",
       caption: "《東方七日祭》公开主视觉",
+    },
+    expressionsArt: {
+      src: "https://raw.githubusercontent.com/odango-chan/touhou-seven-days/main/assets/characters/reimu/reference/expressions-v1.png",
+      alt: "博丽灵梦的表情设定图",
+      caption: "表情设定图",
+    },
+    posesArt: {
+      src: "https://raw.githubusercontent.com/odango-chan/touhou-seven-days/main/assets/characters/reimu/reference/poses-v1.png",
+      alt: "博丽灵梦的动作设定图",
+      caption: "动作设定图",
     },
     upstreamRepo: "odango-chan/touhou-seven-days",
     upstreamPath: "docs/characters/reimu.md",
