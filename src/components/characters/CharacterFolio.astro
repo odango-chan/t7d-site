@@ -8,6 +8,7 @@ interface Props {
 const { character } = Astro.props;
 const no = String(character.order).padStart(2, "0");
 const base = import.meta.env.BASE_URL;
+const artSrc = character.art ? `${base}${character.art.src}` : null;
 ---
 
 <article class="character-folio" id={character.id}>
@@ -39,11 +40,20 @@ const base = import.meta.env.BASE_URL;
     </div>
   </header>
 
-  <figure class="character-portrait" aria-label={`${character.name} 人物肖像预留`}>
-    <span class="portrait-code">PORTRAIT / 4:5 / {no}</span>
-    <span class="portrait-name">{character.name}</span>
-    <figcaption>人物肖像待公开</figcaption>
-  </figure>
+  {
+    character.art && artSrc ? (
+      <figure class="character-portrait character-portrait-published">
+        <img src={artSrc} alt={character.art.alt} loading="lazy" />
+        {character.art.caption && <figcaption>{character.art.caption}</figcaption>}
+      </figure>
+    ) : (
+      <figure class="character-portrait" aria-label={`${character.name} 人物肖像预留`}>
+        <span class="portrait-code">PORTRAIT / {no}</span>
+        <span class="portrait-name">{character.name}</span>
+        <figcaption>人物图待公开</figcaption>
+      </figure>
+    )
+  }
 
   <div class="character-voice">
     <span class="voice-label">VOICE</span>
