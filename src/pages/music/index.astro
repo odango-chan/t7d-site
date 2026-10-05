@@ -46,20 +46,27 @@ const base = import.meta.env.BASE_URL;
             </div>
 
             <div class="music-track-player">
-              {track.audioPath ? (
-                <audio controls preload="metadata" src={base + track.audioPath}>
-                  你的浏览器不支持音频播放。
-                </audio>
-              ) : (
-                <div class="music-preview-pending" aria-label="试听文件待发布">
-                  <span class="music-preview-icon" aria-hidden="true">♪</span>
-                  <div>
-                    <strong>试听文件待发布</strong>
-                    <span>页面已就位，音频补入后即可播放。</span>
+              {track.versions.map((version) => (
+                <div class="music-version">
+                  <div class="music-version-head">
+                    <span>{version.label ?? "试听"}</span>
+                    <span>{version.duration}</span>
                   </div>
+                  {version.audioPath ? (
+                    <audio controls preload="metadata" src={base + version.audioPath}>
+                      你的浏览器不支持音频播放。
+                    </audio>
+                  ) : (
+                    <div class="music-preview-pending" aria-label="试听文件待发布">
+                      <span class="music-preview-icon" aria-hidden="true">♪</span>
+                      <div>
+                        <strong>试听文件待发布</strong>
+                        <span>音频版本已登记，文件补入后即可播放。</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
-              {track.duration && <span class="music-duration">{track.duration}</span>}
+              ))}
             </div>
           </article>
         ))}
