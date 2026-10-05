@@ -35,8 +35,7 @@ const base = import.meta.env.BASE_URL;
               <div class="music-track-meta">
                 <span>{track.kindLabel}</span>
                 {track.day && <span>Day {track.day}</span>}
-                {track.character && <span>{track.character}</span>}
-                {track.roleLabel && <span>{track.roleLabel}</span>}
+                {track.character && <span class="music-track-character">{track.character}</span>}
               </div>
               <h3>
                 {track.title}
