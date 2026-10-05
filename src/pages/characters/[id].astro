@@ -18,7 +18,10 @@ const { character } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const no = String(character.order).padStart(2, "0");
 const total = String(characters.length).padStart(2, "0");
-const artSrc = character.art ? `${base}${character.art.src}` : null;
+const resolveMediaSrc = (src: string) => /^https?:\/\//.test(src) ? src : `${base}${src}`;
+const artSrc = character.art ? resolveMediaSrc(character.art.src) : null;
+const expressionsArtSrc = character.expressionsArt ? resolveMediaSrc(character.expressionsArt.src) : null;
+const posesArtSrc = character.posesArt ? resolveMediaSrc(character.posesArt.src) : null;
 ---
 
 <SiteLayout
@@ -104,18 +107,45 @@ const artSrc = character.art ? `${base}${character.art.src}` : null;
       </div>
     </section>
 
-    <section class="character-detail-pair">
+    <section class="character-detail-pair character-detail-gallery-pair">
       <div>
         <h2>常见神情</h2>
         <ul class="character-tag-list">
           {character.expressions.map((item) => <li>{item}</li>)}
         </ul>
+        {
+          character.expressionsArt && expressionsArtSrc && (
+            <figure class="character-reference-art">
+              <img
+                src={expressionsArtSrc}
+                alt={character.expressionsArt.alt}
+                loading="lazy"
+                decoding="async"
+              />
+              {character.expressionsArt.caption && <figcaption>{character.expressionsArt.caption}</figcaption>}
+            </figure>
+          )
+        }
       </div>
+
       <div>
         <h2>常见动作</h2>
         <ul class="character-tag-list">
           {character.poses.map((item) => <li>{item}</li>)}
         </ul>
+        {
+          character.posesArt && posesArtSrc && (
+            <figure class="character-reference-art">
+              <img
+                src={posesArtSrc}
+                alt={character.posesArt.alt}
+                loading="lazy"
+                decoding="async"
+              />
+              {character.posesArt.caption && <figcaption>{character.posesArt.caption}</figcaption>}
+            </figure>
+          )
+        }
       </div>
     </section>
 
