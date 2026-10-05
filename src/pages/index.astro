@@ -87,7 +87,7 @@ const days = [
             <li>
               <span class="home-music-no">{String(index + 1).padStart(2, "0")}</span>
               <span class="home-music-name">{track.title} ～ {track.titleEn}</span>
-              <span class="home-music-meta">{track.kindLabel}{track.day ? ` · Day ${track.day}` : track.character ? ` · ${track.character}` : ""}</span>
+              <span class="home-music-meta">{track.kindLabel}{track.day ? ` · Day ${track.day}` : ""}</span>
             </li>
           ))}
         </ol>
