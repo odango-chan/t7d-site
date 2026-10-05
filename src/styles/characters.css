@@ -613,3 +613,109 @@
     text-align: left;
   }
 }
+
+
+/* Rebalanced character detail hero */
+.character-detail-hero {
+  padding: clamp(3rem, 7vw, 5.5rem) 0 3.2rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.character-detail-hero--with-art {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 24rem);
+  gap: clamp(2.5rem, 7vw, 7rem);
+  align-items: start;
+}
+
+.character-detail-hero-copy {
+  min-width: 0;
+}
+
+.character-detail-hero h1 {
+  margin: 0;
+  font-size: clamp(3rem, 7vw, 5.8rem);
+  line-height: 1.02;
+  font-weight: 500;
+}
+
+.character-detail-hero blockquote {
+  max-width: 36rem;
+  margin: clamp(2.1rem, 4vw, 3.4rem) 0 0;
+  padding: 0 0 0 1.25rem;
+  border-left: 1px solid var(--hairline);
+  font-size: clamp(1.2rem, 2.1vw, 1.65rem);
+  line-height: 1.85;
+}
+
+.character-detail-summary {
+  max-width: 43rem;
+  margin-top: clamp(2.2rem, 4vw, 3.6rem);
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--hairline-soft);
+}
+
+.character-detail-summary > p:last-child {
+  margin: 0;
+  font-size: clamp(.98rem, 1.45vw, 1.08rem);
+  line-height: 2;
+}
+
+.character-detail-hero .character-detail-scope {
+  justify-content: flex-start;
+  margin-top: 1.6rem;
+}
+
+.character-detail-hero .character-detail-art {
+  width: 100%;
+  max-width: 24rem;
+  margin: 0;
+  justify-self: end;
+}
+
+.character-detail-hero .character-detail-art img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+}
+
+.character-detail-hero .character-detail-art figcaption {
+  margin-top: .65rem;
+}
+
+@media (min-width: 1100px) {
+  .character-detail-hero--with-art {
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 25rem);
+  }
+}
+
+@media (max-width: 840px) {
+  .character-detail-hero--with-art {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .character-detail-hero .character-detail-art {
+    width: min(100%, 21rem);
+    justify-self: start;
+  }
+}
+
+@media (max-width: 520px) {
+  .character-detail-hero {
+    padding-top: 2.4rem;
+  }
+
+  .character-detail-hero h1 {
+    font-size: 2.85rem;
+  }
+
+  .character-detail-hero blockquote {
+    margin-top: 1.8rem;
+  }
+
+  .character-detail-summary {
+    margin-top: 2rem;
+  }
+}
