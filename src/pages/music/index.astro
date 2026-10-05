@@ -23,7 +23,7 @@ const base = import.meta.env.BASE_URL;
           <p class="section-kicker">Soundtrack</p>
           <h2 id="music-list-title">曲目</h2>
         </div>
-        <p>当前先整理已经定下来的曲目。公开试听文件补进站点后，这里会直接出现播放器。</p>
+        <p>当前先整理已经定下来的曲目。可公开版本会直接提供试听；有人声歌词的版本也会在播放器下方收录实际唱词。</p>
       </div>
 
       <div class="music-list">
@@ -64,6 +64,12 @@ const base = import.meta.env.BASE_URL;
                         <span>音频版本已登记，文件补入后即可播放。</span>
                       </div>
                     </div>
+                  )}
+                  {version.lyrics && (
+                    <details class="music-lyrics">
+                      <summary>歌词</summary>
+                      <pre>{version.lyrics}</pre>
+                    </details>
                   )}
                 </div>
               ))}
