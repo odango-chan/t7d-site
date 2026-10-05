@@ -7,6 +7,7 @@ interface Props {
 
 const { character } = Astro.props;
 const no = String(character.order).padStart(2, "0");
+const base = import.meta.env.BASE_URL;
 ---
 
 <article class="character-folio" id={character.id}>
@@ -30,13 +31,18 @@ const no = String(character.order).padStart(2, "0");
           <dd>{character.traits}</dd>
         </div>
       </dl>
+
+      <a class="character-detail-link" href={`${base}characters/${character.id}/`}>
+        查看设定资料
+        <span aria-hidden="true">→</span>
+      </a>
     </div>
   </header>
 
   <figure class="character-portrait" aria-label={`${character.name} 人物肖像预留`}>
     <span class="portrait-code">PORTRAIT / 4:5 / {no}</span>
     <span class="portrait-name">{character.name}</span>
-    <figcaption>母版 1600 × 2000 · 人物肖像待整组公开</figcaption>
+    <figcaption>人物肖像待公开</figcaption>
   </figure>
 
   <div class="character-voice">
