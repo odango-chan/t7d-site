@@ -1,0 +1,137 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { characters, type PublicCharacter } from "../../data/characters/characters";
+import "../../styles/characters.css";
+
+export function getStaticPaths() {
+  return characters.map((character) => ({
+    params: { id: character.id },
+    props: { character },
+  }));
+}
+
+interface Props {
+  character: PublicCharacter;
+}
+
+const { character } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const no = String(character.order).padStart(2, "0");
+const coverage = [
+  ["基础资料", 6],
+  ["视觉要点", 4 + (character.visual.palette ? 1 : 0)],
+  ["道具", character.props.length],
+  ["表情", character.expressions.length],
+  ["动作", character.poses.length],
+] as const;
+---
+
+<SiteLayout
+  title={`${character.name} · 人物设定`}
+  description={`${character.name}（${character.romanized}）的《東方七日祭》公开人物设定资料。`}
+>
+  <div class="site-shell character-detail-shell">
+    <nav class="character-detail-nav" aria-label="人物设定导航">
+      <a href={`${base}characters/`}>← 返回人物目录</a>
+      <span>{no} / 11</span>
+    </nav>
+
+    <header class="character-detail-head">
+      <div>
+        <p class="section-kicker">Character Notes · Public Edition</p>
+        <h1>{character.name}</h1>
+        <p class="character-detail-romanized">{character.romanized}</p>
+      </div>
+      <blockquote>“{character.quote}”</blockquote>
+    </header>
+
+    <section class="character-detail-lead" aria-label="人物概览">
+      <p>{character.summary}</p>
+      <div class="character-detail-scope">
+        <span>{character.origin}</span>
+        <span>公开设定版</span>
+      </div>
+    </section>
+
+    <section class="character-detail-grid" aria-label="基本资料">
+      <h2>人物资料</h2>
+      <dl class="character-profile-grid">
+        <div><dt>种族</dt><dd>{character.species}</dd></div>
+        <div><dt>身高</dt><dd>{character.height}</dd></div>
+        <div><dt>年龄</dt><dd>{character.age}</dd></div>
+        <div><dt>身份</dt><dd>{character.identity}</dd></div>
+        <div><dt>能力</dt><dd>{character.ability}</dd></div>
+        <div><dt>性格</dt><dd>{character.traits}</dd></div>
+      </dl>
+    </section>
+
+    <section class="character-detail-grid">
+      <h2>说话方式</h2>
+      <div class="character-detail-copy">
+        <p>{character.speakingStyle}</p>
+      </div>
+    </section>
+
+    <section class="character-detail-grid">
+      <h2>视觉设定</h2>
+      <dl class="character-visual-list">
+        <div><dt>体态</dt><dd>{character.visual.body}</dd></div>
+        <div><dt>脸 / 发型</dt><dd>{character.visual.faceHair}</dd></div>
+        <div><dt>服装</dt><dd>{character.visual.outfit}</dd></div>
+        <div><dt>鞋袜</dt><dd>{character.visual.footwear}</dd></div>
+        {character.visual.palette && <div><dt>配色</dt><dd>{character.visual.palette}</dd></div>}
+      </dl>
+    </section>
+
+    <section class="character-detail-pair">
+      <div>
+        <h2>道具</h2>
+        {
+          character.props.length > 0 ? (
+            <ul class="character-tag-list">
+              {character.props.map((item) => <li>{item}</li>)}
+            </ul>
+          ) : (
+            <p class="character-empty-note">无固定手持道具。</p>
+          )
+        }
+      </div>
+      <div>
+        <h2>公开资料索引</h2>
+        <dl class="character-coverage">
+          {coverage.map(([label, count]) => (
+            <div>
+              <dt>{label}</dt>
+              <dd>{count} 项</dd>
+            </div>
+          ))}
+        </dl>
+        <p class="character-coverage-note">
+          这里只统计本页公开收录的字段，不表示内部制作进度。
+        </p>
+      </div>
+    </section>
+
+    <section class="character-detail-pair">
+      <div>
+        <h2>表情方向</h2>
+        <ul class="character-tag-list">
+          {character.expressions.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div>
+        <h2>动作方向</h2>
+        <ul class="character-tag-list">
+          {character.poses.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <aside class="character-public-boundary">
+      <p>
+        本页是面向读者的公开设定版，只保留人物认识与视觉连续性所需信息。
+        剧情职责、未公开情节、制作提示、废案与内部审查记录不在本站展示。
+      </p>
+    </aside>
+  </div>
+</SiteLayout>
