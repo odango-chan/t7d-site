@@ -719,3 +719,45 @@
     margin-top: 2rem;
   }
 }
+
+
+/* Expression / pose artwork on character detail pages */
+.character-detail-gallery-pair {
+  align-items: start;
+}
+
+.character-reference-art {
+  margin: 1.4rem 0 0;
+  padding: .7rem;
+  background: color-mix(in srgb, var(--sheet) 72%, var(--paper));
+  border: 1px solid var(--hairline);
+}
+
+.character-reference-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 34rem;
+  object-fit: contain;
+  background: var(--paper-2);
+}
+
+.character-reference-art figcaption {
+  margin-top: .65rem;
+  padding: 0 .15rem;
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: .58rem;
+  line-height: 1.6;
+  letter-spacing: .06em;
+}
+
+@media (max-width: 760px) {
+  .character-reference-art {
+    padding: .55rem;
+  }
+
+  .character-reference-art img {
+    max-height: none;
+  }
+}
