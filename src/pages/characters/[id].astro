@@ -18,13 +18,7 @@ const { character } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const no = String(character.order).padStart(2, "0");
 const total = String(characters.length).padStart(2, "0");
-const coverage = [
-  ["基础资料", 6],
-  ["视觉要点", 4 + (character.visual.palette ? 1 : 0)],
-  ["道具", character.props.length],
-  ["表情", character.expressions.length],
-  ["动作", character.poses.length],
-] as const;
+const artSrc = character.art ? `${base}${character.art.src}` : null;
 ---
 
 <SiteLayout
@@ -39,19 +33,30 @@ const coverage = [
 
     <header class="character-detail-head">
       <div>
-        <p class="section-kicker">Character Notes · Public Edition</p>
+        <p class="section-kicker">Character Notes</p>
         <h1>{character.name}</h1>
         <p class="character-detail-romanized">{character.romanized}</p>
       </div>
       <blockquote>“{character.quote}”</blockquote>
     </header>
 
-    <section class="character-detail-lead" aria-label="人物概览">
-      <p>{character.summary}</p>
-      <div class="character-detail-scope">
-        <span>{character.origin}</span>
-        <span>公开设定版</span>
+    <section class="character-detail-lead" aria-label="人物小记">
+      <div>
+        <p class="character-detail-eyebrow">人物小记</p>
+        <p>{character.summary}</p>
       </div>
+      {
+        character.art && artSrc ? (
+          <figure class="character-detail-art">
+            <img src={artSrc} alt={character.art.alt} />
+            {character.art.caption && <figcaption>{character.art.caption}</figcaption>}
+          </figure>
+        ) : (
+          <div class="character-detail-scope">
+            <span>{character.origin}</span>
+          </div>
+        )
+      }
     </section>
 
     <section class="character-detail-grid" aria-label="基本资料">
@@ -67,14 +72,14 @@ const coverage = [
     </section>
 
     <section class="character-detail-grid">
-      <h2>说话方式</h2>
+      <h2>说话的感觉</h2>
       <div class="character-detail-copy">
         <p>{character.speakingStyle}</p>
       </div>
     </section>
 
     <section class="character-detail-grid">
-      <h2>视觉设定</h2>
+      <h2>外观</h2>
       <dl class="character-visual-list">
         <div><dt>体态</dt><dd>{character.visual.body}</dd></div>
         <div><dt>脸 / 发型</dt><dd>{character.visual.faceHair}</dd></div>
@@ -84,55 +89,36 @@ const coverage = [
       </dl>
     </section>
 
-    <section class="character-detail-pair">
+    <section class="character-detail-grid">
+      <h2>随身物件</h2>
       <div>
-        <h2>道具</h2>
         {
           character.props.length > 0 ? (
             <ul class="character-tag-list">
               {character.props.map((item) => <li>{item}</li>)}
             </ul>
           ) : (
-            <p class="character-empty-note">无固定手持道具。</p>
+            <p class="character-empty-note">没有特别固定的手持物件。</p>
           )
         }
-      </div>
-      <div>
-        <h2>公开资料索引</h2>
-        <dl class="character-coverage">
-          {coverage.map(([label, count]) => (
-            <div>
-              <dt>{label}</dt>
-              <dd>{count} 项</dd>
-            </div>
-          ))}
-        </dl>
-        <p class="character-coverage-note">
-          这里只统计本页公开收录的字段，不表示内部制作进度。
-        </p>
       </div>
     </section>
 
     <section class="character-detail-pair">
       <div>
-        <h2>表情方向</h2>
+        <h2>常见神情</h2>
         <ul class="character-tag-list">
           {character.expressions.map((item) => <li>{item}</li>)}
         </ul>
       </div>
       <div>
-        <h2>动作方向</h2>
+        <h2>常见动作</h2>
         <ul class="character-tag-list">
           {character.poses.map((item) => <li>{item}</li>)}
         </ul>
       </div>
     </section>
 
-    <aside class="character-public-boundary">
-      <p>
-        本页是面向读者的公开设定版，只保留人物认识与视觉连续性所需信息。
-        剧情职责、未公开情节、制作提示、废案与内部审查记录不在本站展示。
-      </p>
-    </aside>
+    <p class="character-detail-footnote">人物资料会随正式公开内容逐步补充。</p>
   </div>
 </SiteLayout>
