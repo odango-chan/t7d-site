@@ -14,7 +14,6 @@ export interface MusicTrack {
   kindLabel: string;
   day?: number;
   character?: string;
-  roleLabel?: string;
   description: string;
   versions: MusicTrackVersion[];
 }
@@ -68,8 +67,8 @@ export const musicTracks: MusicTrack[] = [
     titleEn: "Three Echoes of Shishi",
     kind: "character-boss",
     kindLabel: "Boss 曲",
+    day: 6,
     character: "沈诗诗",
-    roleLabel: "Character Theme",
     description: "沈诗诗的核心角色同人曲，同时也是她的 Boss Theme。纯音乐版用于保留游戏感，Vocal Version 则把诗诗与檐下回声写得更完整。",
     versions: [
       { label: "Instrumental", duration: "3:24" },
