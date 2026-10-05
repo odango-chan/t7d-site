@@ -90,6 +90,31 @@
   line-height: 1.8;
 }
 
+.music-track-player {
+  display: grid;
+  gap: .9rem;
+}
+
+.music-version {
+  display: grid;
+  gap: .45rem;
+}
+
+.music-version + .music-version {
+  padding-top: .9rem;
+  border-top: 1px solid var(--hairline-soft);
+}
+
+.music-version-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: .62rem;
+  letter-spacing: .06em;
+}
+
 .music-track-player audio {
   display: block;
   width: 100%;
@@ -128,15 +153,6 @@
   font-family: var(--sans);
   font-size: .62rem;
   line-height: 1.5;
-}
-
-.music-duration {
-  display: block;
-  margin-top: .5rem;
-  color: var(--ink-soft);
-  font-family: var(--sans);
-  font-size: .62rem;
-  text-align: right;
 }
 
 .music-room-note {
