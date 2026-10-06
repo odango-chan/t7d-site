@@ -123,3 +123,23 @@ t7d-site
 ```
 
 This keeps the dependency one-way and prevents the public presentation repository from becoming coupled to production-repository permissions.
+
+## Automated public asset publishing
+
+Upstream-owned public media is synchronized **from the private production repository toward this public repository**.
+
+Operational owners:
+
+- production allowlist: `touhou-seven-days/assets/publishing/site-assets.json`;
+- production sync tool: `touhou-seven-days/.github/scripts/sync-site-assets.py`;
+- production workflow: `touhou-seven-days/.github/workflows/publish-public-assets.yml`;
+- target credential: private-source repository secret `T7D_SITE_SYNC_TOKEN`.
+
+The allowlist is explicit. There is no recursive directory mirror and no automatic prune.
+
+For each `mode: copy` entry the production workflow compares SHA-256 content hashes. An identical public copy is skipped; a changed or missing public copy is replaced and committed to `t7d-site/main`, which then uses the normal Pages deployment workflow.
+
+Do not hand-edit a file that is owned by this upstream allowlist. Make the accepted change upstream and let the publishing workflow update the public copy.
+
+The public repository never receives credentials for reading the private production repository.
+
