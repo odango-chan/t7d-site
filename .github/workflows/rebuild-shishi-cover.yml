@@ -1,0 +1,25 @@
+name: Temporary rebuild Shishi cover
+
+on:
+  push:
+    paths:
+      - ".github/workflows/rebuild-shishi-cover.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: python tools/rebuild-shishi-cover.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/media/music/covers/echoes-of-shishi.png
+          git rm -r .site-tmp/shishi-cover tools/rebuild-shishi-cover.py
+          git commit -m "site: add Shishi cover asset"
+          git push
