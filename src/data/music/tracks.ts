@@ -87,8 +87,7 @@ export const musicTracks: MusicTrack[] = [
     kindLabel: "Boss 曲",
     day: "6 → 7",
     character: "沈诗诗",
-    cover: "media/promotion/p02-seven-days.png",
-    coverPlaceholder: true,
+    cover: "media/music/covers/echoes-of-shishi.png",
     description: "沈诗诗的核心角色同人曲，同时也是她的 Final Boss Theme。战斗从第六日深夜跨到第七日清晨；纯音乐版保留游戏感，Vocal Version 则把诗诗与檐下回声写得更完整。",
     versions: [
       {
