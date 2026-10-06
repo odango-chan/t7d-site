@@ -17,6 +17,7 @@ export interface MusicTrack {
   character?: string;
   cover: string;
   coverPlaceholder?: boolean;
+  titleSeparator?: "~" | "～";
   description: string;
   versions: MusicTrackVersion[];
 }
@@ -82,12 +83,13 @@ export const musicTracks: MusicTrack[] = [
   {
     id: "echoes-of-shishi",
     title: "檐下三响",
-    titleEn: "Three Echoes of Shishi",
+    titleEn: "Echoes of Shishi",
     kind: "character-boss",
     kindLabel: "Boss 曲",
     day: "6 → 7",
     character: "沈诗诗",
-    cover: "media/music/covers/echoes-of-shishi.png",
+    cover: "https://raw.githubusercontent.com/odango-chan/touhou-seven-days/main/assets/music/b06f-shen-shishi-cover-candidate-v9.png",
+    titleSeparator: "~",
     description: "沈诗诗的核心角色同人曲，同时也是她的 Final Boss Theme。战斗从第六日深夜跨到第七日清晨；纯音乐版保留游戏感，Vocal Version 则把诗诗与檐下回声写得更完整。",
     versions: [
       {

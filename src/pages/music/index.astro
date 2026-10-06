@@ -32,7 +32,7 @@ const base = import.meta.env.BASE_URL;
             <div class="music-track-index">{String(index + 1).padStart(2, "0")}</div>
 
             <figure class="music-track-cover">
-              <img src={base + track.cover} alt={`${track.title}曲目封面`} loading="lazy" />
+              <img src={track.cover.startsWith("http") ? track.cover : base + track.cover} alt={`${track.title}曲目封面`} loading="lazy" />
               {track.coverPlaceholder && <figcaption>封面制作中</figcaption>}
             </figure>
 
@@ -44,7 +44,7 @@ const base = import.meta.env.BASE_URL;
               </div>
               <h3>
                 {track.title}
-                <span aria-hidden="true"> ～ </span>
+                <span aria-hidden="true"> {track.titleSeparator ?? "～"} </span>
                 <span class="music-track-en">{track.titleEn}</span>
               </h3>
               <p>{track.description}</p>
